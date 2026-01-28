@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ana & Luis — Nuestra Boda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f5f2;
+      --primary: #2f3e2e;
+      --accent: #c7b38a;
+      --text: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #f7f5f2, #ffffff);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .card {
+      max-width: 520px;
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .date {
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      color: #777;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--accent);
+      margin: 2rem auto;
+      border-radius: 2px;
+    }
+
+    .message {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .countdown {
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+    }
+
+    button:hover {
+      background: #1f2a1f;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Ana & Luis</h1>
+    <div class="date">Septiembre 2026</div>
+
+    <div class="divider"></div>
+
+    <p class="message">
+      Con inmensa alegría queremos invitarte a celebrar uno de los días más importantes de nuestras vidas.
+    </p>
+
+    <div class="countdown" id="countdown">
+      Cargando cuenta regresiva...
+    </div>
+
+    <button onclick="confirmarAsistencia()">
+      Confirmar asistencia
+    </button>
+
+    <footer>
+      Hecho con 💛 para un día inolvidable
+    </footer>
+  </div>
+
+  <script>
+    // ===== CONFIG =====
+    const WEDDING_DATE = new Date("2026-09-15T17:00:00"); // Cambia fecha aquí
+    const RSVP_URL = "https://tusitio.com/rsvp"; // Aquí puedes poner Supabase o un form externo
+
+    // ===== COUNTDOWN =====
+    function updateCountdown() {
+      const now = new Date();
+      const diff = WEDDING_DATE - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerText = 
+          "¡Hoy es el gran día! 💍";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+      document.getElementById("countdown").innerText = 
+        `${days} días · ${hours} horas · ${minutes} minutos`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // ===== RSVP BUTTON =====
+    function confirmarAsistencia() {
+      // Opción 1: redirigir a form
+      window.location.href = RSVP_URL;
+
+      // Opción 2: más adelante puedes abrir un modal o enviar directo a Supabase
+      // alert("Aquí puedes conectar Supabase o un formulario");
+    }
+  </script>
+
+</body>
+</html>
