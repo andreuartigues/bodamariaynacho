@@ -54,39 +54,58 @@
     Fecha: r.created_at
   }));
 
-  // 2️⃣ Crear libro y hoja
+  /// 2️⃣ Crear libro y hoja
   const wb = XLSX.utils.book_new();
-  const ws = XLSX.utils.json_to_sheet(data, { header: ["Nombre","Email","Invitados","Comentario","Fecha"] });
+  const ws = XLSX.utils.json_to_sheet(data, {
+    header: ["Nombre","Email","Invitados","Comentario","Fecha"],
+    origin: "A1"
+  });
 
-  // 3️⃣ Formato de header
+  // 3️⃣ Formato de header en negrita y wrap text
   const range = XLSX.utils.decode_range(ws['!ref']);
   for(let C = range.s.c; C <= range.e.c; ++C) {
     const cell = ws[XLSX.utils.encode_cell({r:0, c:C})];
     if(!cell.s) cell.s = {};
-    cell.s.font = { bold: true }; // header en negrita
+    cell.s.font = { bold: true };
+    cell.s.alignment = { wrapText: true };
   }
 
-  // 4️⃣ Ajustar ancho de columnas y wrap text
-  ws['!cols'] = [
-    { wch: 44 }, // Nombre
-    { wch: 44 }, // Email
-    { wch: 44 }, // Invitados
-    { wch: 44 }, // Comentario
-    { wch: 44 }  // Fecha
-  ];
-
-  // Wrap text en todas las celdas
-  for(let R = range.s.r; R <= range.e.r; ++R) {
-    for(let C = range.s.c; C <= range.e.c; ++C) {
+  // 4️⃣ Formato de todas las celdas con wrap text
+  for(let R = 1; R <= range.e.r; ++R){
+    for(let C = range.s.c; C <= range.e.c; ++C){
       const cell = ws[XLSX.utils.encode_cell({r:R, c:C})];
       if(!cell.s) cell.s = {};
       cell.s.alignment = { wrapText: true };
     }
   }
 
+  // 5️⃣ Ajustar ancho de columnas
+  ws['!cols'] = [
+    { wch: 22 }, // Nombre
+    { wch: 22 }, // Email
+    { wch: 22 }, // Invitados
+    { wch: 22 }, // Comentario
+    { wch: 22 }  // Fecha
+  ];
+
+  // 6️⃣ Convertir hoja a tabla (Excel Table) para filtros automáticos
+  ws['!autofilter'] = { ref: ws['!ref'] };
+
+  // 7️⃣ Opcional: conditional formatting (resaltar filas según condición)
+  // SheetJS puro no soporta full Excel conditional formatting
+  // Pero puedes resaltar manualmente, por ejemplo: invitados > 0 en color
+  for(let R = 1; R <= range.e.r; ++R){
+    const cell = ws[XLSX.utils.encode_cell({r:R, c:2})]; // columna Invitados
+    if(cell.v > 0){
+      if(!cell.s) cell.s = {};
+      cell.s.fill = { fgColor: { rgb: "FFFFC0CB" } }; // rosa claro
+    }
+  }
+
+  // 8️⃣ Añadir hoja al libro
   XLSX.utils.book_append_sheet(wb, ws, "Invitados");
 
-  // 5️⃣ Descargar archivo
+  // 9️⃣ Descargar archivo
   XLSX.writeFile(wb, "Lista_de_invitados.xlsx");
 }
 
