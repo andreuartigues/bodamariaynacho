@@ -37,7 +37,7 @@
 
   document.getElementById("download").addEventListener("click", async () => {
     const { data, error } = await supabaseAdmin
-      .from("invitados")
+      .from("rsvp")
       .select("name,email,guests,comment,created_at");
 
     if (error) {
