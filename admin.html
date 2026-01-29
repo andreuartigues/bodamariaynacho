@@ -20,62 +20,53 @@
     const SUPABASE_ANON_KEY = "sb_publishable_AuBKM60iM53tjH4ptBGENQ_7MVuBcum";
     const ADMIN_TOKEN = "SONPARERA";
 
-    const supabaseAdmin = supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY,
-      {
-        global: {
-          headers: {
-            "x-admin-token": ADMIN_TOKEN
-          }
-        }
-      }
-    );
+     // sacar token de la URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("token");
 
-    const status = document.getElementById("status");
+  if(token !== ADMIN_TOKEN){
+    document.body.innerHTML = "<h2>Acceso denegado</h2>";
+    throw "Token inválido";
+  }
 
-    document.getElementById("download").addEventListener("click", async () => {
-      status.innerText = "Descargando invitados...";
+  // Solo si token correcto inicializamos Supabase
+  const supabaseAdmin = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
 
-      const { data, error } = await supabaseAdmin
-        .from("invitados")
-        .select("name,email,guests,comment,created_at");
+  document.getElementById("download").addEventListener("click", async () => {
+    const { data, error } = await supabaseAdmin
+      .from("invitados")
+      .select("name,email,guests,comment,created_at");
 
-      if (error) {
-        status.innerText = "❌ Acceso no autorizado";
-        console.error(error);
-        return;
-      }
-
-      downloadExcel(data);
-      status.innerText = "✅ Archivo descargado";
-    });
-
-    function downloadExcel(rows) {
-      const header = ["Nombre", "Email", "Invitados", "Comentario", "Fecha"];
-      const csv = [
-        header.join(","),
-        ...rows.map(r =>
-          [
-            r.name,
-            r.email,
-            r.guests,
-            `"${(r.comment || "").replace(/"/g, '""')}"`,
-            r.created_at
-          ].join(",")
-        )
-      ].join("\n");
-
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "invitados_boda.xlsx";
-      a.click();
-
-      URL.revokeObjectURL(url);
+    if (error) {
+      alert("Error al descargar: " + error.message);
+      return;
     }
+
+    downloadCSV(data);
+  });
+
+  function downloadCSV(rows){
+    const header = ["Nombre","Email","Invitados","Comentario","Fecha"];
+    const csv = [
+      header.join(","),
+      ...rows.map(r => [
+        r.name,
+        r.email,
+        r.guests,
+        `"${(r.comment||"").replace(/"/g,'""')}"`,
+        r.created_at
+      ].join(","))
+    ].join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "invitados.csv";
+    a.click();
+  }
   </script>
 
 </body>
