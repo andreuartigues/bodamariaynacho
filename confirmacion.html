@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmación — María & Nacho</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="confirmation.css">
+</head>
+<body>
+
+  <!-- NAVEGACIÓN STICKY -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">Maria & Nacho - Sa Nostra Boda</a>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="confirmacion.html">Confirmació</a></li>
+        <li><a href="info.html">Més Info</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONFIRMACIÓN -->
+  <section class="confirmation-page">
+    <div class="container-wide">
+      <div class="confirmation-header">
+        <div class="section-header">
+          <div class="decorative-line"></div>
+          <h1>Confirmación de Asistencia</h1>
+          <div class="decorative-line"></div>
+        </div>
+        <p class="confirmation-intro">
+          Por favor, confírmanos tu asistencia antes del <strong>1 de Agosto de 2026</strong>.
+          <br>Necesitamos saberlo para organizarlo todo con mimo.
+        </p>
+      </div>
+
+      <div class="form-card-wide">
+        <form id="rsvp-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nombre completo *</label>
+              <input 
+                type="text" 
+                id="name" 
+                placeholder="Introduce tu nombre completo" 
+                required 
+                autocomplete="name"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input 
+                type="email" 
+                id="email" 
+                placeholder="tu@email.com" 
+                required
+                autocomplete="email"
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="radio-label">Medio de transporte *</label>
+            <div class="radio-options-horizontal">
+              <label class="radio-option-clean">
+                <input type="radio" name="bus" value="bus" required>
+                <span class="radio-text">Bus proporcionado</span>
+              </label>
+              <label class="radio-option-clean">
+                <input type="radio" name="bus" value="coche" required>
+                <span class="radio-text">Coche propio</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="comment">Comentarios o alergias (opcional)</label>
+            <textarea
+              id="comment"
+              placeholder="Cuéntanos si tienes alguna alergia alimentaria, restricción dietética o cualquier cosa que debamos saber..."
+              rows="4"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Confirmar Asistencia</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Fet amb 💛 per un dia inolvidable</p>
+    <p class="footer-date">19 · Setembre · 2026</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>

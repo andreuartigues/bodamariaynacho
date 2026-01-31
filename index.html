@@ -1,75 +1,154 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>María & Nacho — Nuestra Boda</title>
+  <title>María & Nacho — Sa Nostra Boda</title>
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
   
   <!-- CSS externo -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="card">
-    <h1>María & Nacho</h1>
-    <div class="date">Septiembre 2026</div>
-
-    <div class="divider"></div>
-
-    <p class="message">
-      Con inmensa alegría queremos invitarte a celebrar uno de los días más importantes de nuestras vidas.
-    </p>
-
-    <div class="countdown" id="countdown">
-      Cargando cuenta regresiva...
+  <!-- NAVEGACIÓN STICKY -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-brand">Maria & Nacho - Sa Nostra Boda</a>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="confirmacion.html">Confirmació</a></li>
+        <li><a href="info.html">Més Info</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
+  </nav>
 
-      <form id="rsvp-form">
-      <input 
-        type="text" 
-        id="name" 
-        placeholder="Nombre completo" 
-        required 
-        autocomplete="name"
-      >
-      
-      <input 
-        type="email" 
-        id="email" 
-        placeholder="Email" 
-        required
-        autocomplete="email"
-      >
+  <!-- HERO - SAVE THE DATE -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <img src="save_the_date.jfif" alt="Save the Date - María & Nacho" class="save-the-date-img">
+    </div>
+  </section>
 
-      <div class="radio-group">
-        <label class="radio-label">¿Cómo llegarás?</label>
-        <div class="radio-options">
-          <label class="radio-option">
-            <input type="radio" name="bus" value="bus" required>
-            <span>🚌 Bus proporcionado</span>
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="bus" value="coche" required>
-            <span>🚗 Coche propio</span>
-          </label>
+  <!-- MENSAJE DE BIENVENIDA -->
+  <section class="welcome">
+    <div class="container">
+      <div class="section-header">
+        <div class="decorative-line"></div>
+        <h2>¡Ens Casam!</h2>
+        <div class="decorative-line"></div>
+      </div>
+      <p class="welcome-text">
+        Estimats amics i família, amb inmensa alegria volem compartir aquest dia tan especial amb vosaltres. Després de tants 
+        moment inolvidables junts, som molt feliços de celebrar sa nostra boda rodejats de ses persones que més estimam
+      </p>
+      <p class="welcome-text">
+        Sa vostra presència és es millor regal que podem tenir.
+        Esperam celebrar aquest dia tan únic amb vosaltes!
+      </p>
+      <div class="date-badge">
+        <span class="date-day">19</span>
+        <span class="date-month">Setembre</span>
+        <span class="date-year">2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVITACIÓN FORMAL -->
+  <section id="invitacion" class="invitation">
+    <div class="container">
+      <div class="invitation-card">
+        <div class="invitation-ornament">🌿</div>
+        <h3>Invitació</h3>
+        <p class="invitation-location">
+          <strong>Muro, Mallorca</strong>
+        </p>
+        <p class="invitation-details">
+          Ens complau convidar-vos a sa nostra voda que es celebrarà el
+        </p>
+        <div class="invitation-datetime">
+          <p><strong>Dissabte, 19 de Setembre de 2026</strong></p>
+          <p>a les <strong>12:00h</strong></p>
+        </div>
+        <p class="invitation-venue">
+          a sa finca de finca de <strong>Son Parera, Muro</strong>
+        </p>
+        <div class="invitation-ornament">🌾</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIRMACIÓN -->
+  <section id="confirmacion" class="confirmation-cta">
+    <div class="container text-center">
+      <h3>Ens Confirmes sa teva Asistència?</h3>
+      <p>Per favor, confirma abans del <strong>1 de Maig de 2026</strong></p>
+      <a href="confirmacion.html" class="btn-primary">Confirmar Asistència</a>
+    </div>
+  </section>
+
+  <!-- REGALOS -->
+  <section id="regalos" class="gifts">
+    <div class="container">
+      <div class="section-header">
+        <div class="decorative-line"></div>
+        <h2>Viaje de Noces</h2>
+        <div class="decorative-line"></div>
+      </div>
+      <div class="gifts-content">
+        <p class="gifts-text">
+          Es regalo és opcional, sa vostra asistència és lo més ens importa, però si voleu tenir un detall amb nosaltres,
+          hem preparat una "vidriola de viatge" on podeu ajudar-mos a fer es nostre Viatge de Noces més inolvidable.
+        </p>
+        <div class="bank-account">
+          <p class="iban-label">Nombre de compte:</p>
+          <p class="iban-number">ES02 0081 0652 2500 0241 5044</p>
+        </div>
+        <p class="gifts-footer">¡Gràcies per formar part d'aquesta aventura!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="decorative-line"></div>
+        <h2>Tens qualque dubte?</h2>
+        <div class="decorative-line"></div>
+      </div>
+      <p class="contact-subtitle">Contacte amb nosaltres</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <p class="contact-name">Maria</p>
+          <p class="contact-detail">689 344 385</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-name">Nacho</p>
+          <p class="contact-detail">678 540 369</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-name">Email</p>
+          <p class="contact-detail">mariartiguesmartinez@gmail.com</p>
         </div>
       </div>
+    </section>
 
-      <button type="submit">Confirmar asistencia</button>
-    </form>
+  <!-- FOOTER -->
+  <footer>
+    <p>Fet amb 💛 per un dia inolvidable</p>
+    <p class="footer-date">19 · Setembre · 2026</p>
+  </footer>
 
-    <footer>
-      Hecho con 💛 para un día inolvidable
-    </footer>
-  </div>
-
-  <!-- Scripts externos -->
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <!-- JavaScript -->
+  <script src="main.js"></script>
 
 </body>
 </html>
