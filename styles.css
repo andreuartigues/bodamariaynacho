@@ -82,7 +82,8 @@ h1 {
   margin-top: 2rem;
 }
 
-#rsvp-form input,
+#rsvp-form input[type="text"],
+#rsvp-form input[type="email"],
 #rsvp-form textarea {
   padding: 0.875rem 1.25rem;
   border: 2px solid #e5e5e5;
@@ -93,7 +94,8 @@ h1 {
   background: #fafafa;
 }
 
-#rsvp-form input:focus,
+#rsvp-form input[type="text"]:focus,
+#rsvp-form input[type="email"]:focus,
 #rsvp-form textarea:focus {
   outline: none;
   border-color: var(--accent);
@@ -103,6 +105,61 @@ h1 {
 #rsvp-form textarea {
   min-height: 100px;
   resize: vertical;
+}
+
+/* Radio buttons */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-align: left;
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 1.25rem;
+  border: 2px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.radio-option:hover {
+  border-color: var(--accent);
+  background: white;
+}
+
+.radio-option input[type="radio"] {
+  margin-right: 0.75rem;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.radio-option span {
+  flex: 1;
+}
+
+.radio-option:has(input:checked) {
+  border-color: var(--accent);
+  background: #fffef8;
+  box-shadow: 0 2px 8px rgba(199, 179, 138, 0.2);
 }
 
 button {

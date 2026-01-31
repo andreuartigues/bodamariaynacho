@@ -22,15 +22,14 @@ function updateCountdown() {
   }
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
 
-  countdownElement.innerText = `${days} días · ${hours} horas · ${minutes} minutos`;
+  countdownElement.innerText = `Falten només ${days} días `;
 }
 
 // Iniciar cuenta regresiva
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
 
 /**
  * Manejo del formulario RSVP
@@ -40,18 +39,20 @@ const form = document.getElementById("rsvp-form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  // Obtener el valor del radio button seleccionado
+  const busOption = document.querySelector('input[name="bus"]:checked');
+
   // Obtener datos del formulario
   const data = {
     name: document.getElementById("name").value.trim(),
     email: document.getElementById("email").value.trim(),
-    guests: Number(document.getElementById("guests").value),
-    comment: document.getElementById("comment").value.trim(),
+    bus: busOption ? busOption.value : null,
     created_at: new Date().toISOString()
   };
 
   // Validación básica
-  if (!data.name || !data.email) {
-    alert("⚠️ Por favor completa los campos obligatorios");
+  if (!data.name || !data.email || !data.bus) {
+    alert("⚠️ Por favor completa todos los campos");
     return;
   }
 

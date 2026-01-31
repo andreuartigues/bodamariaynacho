@@ -27,7 +27,7 @@
       Cargando cuenta regresiva...
     </div>
 
-    <form id="rsvp-form">
+      <form id="rsvp-form">
       <input 
         type="text" 
         id="name" 
@@ -44,22 +44,21 @@
         autocomplete="email"
       >
 
-      <input
-        type="number"
-        id="guests"
-        min="0"
-        max="10"
-        placeholder="Número de invitados"
-        required
-      >
+      <div class="radio-group">
+        <label class="radio-label">¿Cómo llegarás?</label>
+        <div class="radio-options">
+          <label class="radio-option">
+            <input type="radio" name="bus" value="bus" required>
+            <span>🚌 Bus proporcionado</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="bus" value="coche" required>
+            <span>🚗 Coche propio</span>
+          </label>
+        </div>
+      </div>
 
-      <textarea
-        id="comment"
-        placeholder="Comentarios o alergias (opcional)"
-        rows="3"
-      ></textarea>
-
-      <button type="submit">Enviar confirmación</button>
+      <button type="submit">Confirmar asistencia</button>
     </form>
 
     <footer>
