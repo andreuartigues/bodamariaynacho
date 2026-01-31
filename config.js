@@ -4,7 +4,7 @@
 
 const SUPABASE_CONFIG = {
   url: "https://eurobrvauarexooknbpi.supabase.co",
-  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cm9icnZhdWFyZXhvb2tuYnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgzMzg2NjUsImV4cCI6MjA1MzkxNDY2NX0.lGZH5Qy7dOmQqvKC0vTcr_MaLLVJy_4zHyN6P4F8Xzg"
+  anonKey: "sb_publishable_AuBKM60iM53tjH4ptBGENQ_7MVuBcum"
 };
 
 // Para proteger tu base de datos, configura RLS en Supabase:

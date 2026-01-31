@@ -5,7 +5,7 @@ const supabaseClient = supabase.createClient(
 );
 
 // Configuración de la fecha de la boda
-const WEDDING_DATE = new Date("2026-09-19T17:00:00");
+const WEDDING_DATE = new Date("2026-09-19T12:00:00");
 
 /**
  * Actualiza la cuenta regresiva cada segundo
@@ -19,7 +19,7 @@ function updateCountdown() {
   if (!countdownElement) return;
   
   if (diff <= 0) {
-    countdownElement.innerText = "¡Hoy es el gran día! 💍";
+    countdownElement.innerText = "¡Avui és es gran dia! 💍";
     return;
   }
 
@@ -52,14 +52,14 @@ if (form) {
     const data = {
       name: document.getElementById("name").value.trim(),
       email: document.getElementById("email").value.trim(),
-      bus: busOption ? busOption.value : null,
       comment: document.getElementById("comment").value.trim() || null,
+      bus: busOption ? busOption.value : null,
       created_at: new Date().toISOString()
     };
 
     // Validación básica
     if (!data.name || !data.email || !data.bus) {
-      alert("⚠️ Por favor completa todos los campos obligatorios (nombre, email y transporte)");
+      alert("⚠️ Per favor, completa els camps obligatòris (nom, email y transport)");
       return;
     }
 
@@ -78,11 +78,11 @@ if (form) {
         throw error;
       }
 
-      alert("💛 ¡Gracias por confirmar tu asistencia! Nos vemos el 19 de septiembre.");
+      alert("💛 Moltes gràcies per confirmar la teva asistència! Ens veim dia 19 de setembre.");
       form.reset();
       
     } catch (error) {
-      console.error("Error al enviar confirmación:", error);
+      console.error("Error en enviar sa confirmació:", error);
       
       // Mensaje de error más específico
       if (error.message.includes("duplicate") || error.message.includes("unique")) {
