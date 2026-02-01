@@ -34,7 +34,7 @@
   document.getElementById("download").addEventListener("click", async () => {
   const { data, error } = await supabaseAdmin
     .from("rsvp")
-    .select("name,email,guests,comment,created_at");
+    .select("name,email,bus,comment,created_at");
 
   if(error){
     alert("Error al descargar: "+error.message);
@@ -57,7 +57,7 @@
   /// 2️⃣ Crear libro y hoja
   const wb = XLSX.utils.book_new();
   const ws = XLSX.utils.json_to_sheet(data, {
-    header: ["Nombre","Email","Invitados","Comentario","Fecha"],
+    header: ["Nombre","Email","BusCOche","Comentario","Fecha"],
     origin: "A1"
   });
 
