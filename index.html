@@ -58,28 +58,72 @@
         <span class="date-month">Setembre</span>
         <span class="date-year">2026</span>
       </div>
+      
+      <!-- CUENTA REGRESIVA -->
+      <div class="countdown-container">
+        <p class="countdown-label">Falta:</p>
+        <div class="countdown-display" id="countdown">Carregant...</div>
+      </div>
     </div>
   </section>
 
-  <!-- INVITACIÓN FORMAL -->
-  <section id="invitacion" class="invitation">
+  <!-- CRONOGRAMA VISUAL -->
+  <section id="invitacion" class="timeline-section">
     <div class="container">
-        <div class="invitation-ornament">🌿</div>
-        <h3>Invitació</h3>
-        <p class="invitation-location">
-          <strong>Muro, Mallorca</strong>
-        </p>
-        <p class="invitation-details">
-          Ens complau convidar-vos a sa nostra voda que es celebrarà el
-        </p>
-        <div class="invitation-datetime">
-          <p><strong>Dissabte, 19 de Setembre de 2026</strong></p>
-          <p>a les <strong>12:00h</strong></p>
+      <div class="section-header">
+        <div class="decorative-line"></div>
+        <h2>Cronograma del Dia</h2>
+        <div class="decorative-line"></div>
+      </div>
+
+      <div class="event-timeline">
+        <!-- Evento 1 - Izquierda -->
+        <div class="event-item left">
+          <div class="event-content">
+            <div class="event-time">11:30h</div>
+            <h3>Sortida Bus des de Palma</h3>
+            <p>Punt de trobada: Plaça Espanya</p>
+          </div>
+          <div class="event-dot"></div>
+          <div class="event-spacer"></div>
         </div>
-        <p class="invitation-venue">
-          a sa finca de finca de <strong>Son Parera, Muro</strong>
-        </p>
-        <div class="invitation-ornament">🌾</div>
+
+        <!-- Evento 2 - Derecha -->
+        <div class="event-item right">
+          <div class="event-spacer"></div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <div class="event-time">12:00h</div>
+            <h3>Ceremònia - Església de Muro</h3>
+            <p>Parròquia de Sant Joan Baptista</p>
+            <div class="event-image-placeholder">
+              <img src="iglesia_muro.jpg" alt="Església de Muro" class="event-img">
+            </div>
+          </div>
+        </div>
+
+        <!-- Evento 3 - Izquierda -->
+        <div class="event-item left">
+          <div class="event-content">
+            <div class="event-time">13:00h</div>
+            <h3>Arribada a Son Parera</h3>
+            <p>Còctel de benvinguda i celebració</p>
+          </div>
+          <div class="event-dot"></div>
+          <div class="event-spacer"></div>
+        </div>
+
+        <!-- Evento 4 - Derecha -->
+        <div class="event-item right">
+          <div class="event-spacer"></div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <div class="event-time">00:00h</div>
+            <h3>Tornada a Palma</h3>
+            <p>Bus de tornada cap a Palma</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -144,5 +188,8 @@
   <!-- JavaScript -->
   <script src="main.js"></script>
 
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

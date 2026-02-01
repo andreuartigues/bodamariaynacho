@@ -1,0 +1,451 @@
+/* ============================
+   PÁGINA DE INFORMACIÓN
+   ============================ */
+.info-page {
+  margin-top: 80px;
+  background: var(--cream);
+}
+
+.info-page .section-header {
+  padding: 4rem 2rem 2rem;
+  background: var(--cream);
+}
+
+.info-page h1 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--dark-brown);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ============================
+   SECCIONES CON FRANJAS
+   ============================ */
+.info-section {
+  padding: 4rem 2rem;
+  margin: 0;
+}
+
+/* Alternar colores de fondo */
+.info-section:nth-child(even) {
+  background: var(--white);
+}
+
+.info-section:nth-child(odd) {
+  background: var(--cream);
+}
+
+.info-section h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--dark-brown);
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.info-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--sage);
+  border-radius: 2px;
+}
+
+.info-section .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ============================
+   TIMELINE (HORARIOS)
+   ============================ */
+.timeline {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  padding: 0;
+  border-left: 4px solid var(--olive);
+  padding-left: 2rem;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+  border-left-color: var(--sage);
+}
+
+.timeline-time {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--olive);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.timeline-content h3 {
+  font-size: 1.4rem;
+  color: var(--dark-brown);
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.timeline-content p {
+  color: var(--brown);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* ============================
+   UBICACIÓN CON GOOGLE MAPS
+   ============================ */
+.location-info {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.location-name {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--dark-brown);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.location-address {
+  font-size: 1.15rem;
+  color: var(--brown);
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+/* Google Maps integrado */
+.map-container {
+  width: 100%;
+  max-width: 100%;
+  height: 450px;
+  margin: 3rem auto 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.map-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.map-btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--olive) 0%, var(--sage) 100%);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(107, 124, 89, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.map-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(107, 124, 89, 0.4);
+}
+
+/* ============================
+   TRANSPORTE
+   ============================ */
+.transport-options {
+  display: grid;
+  gap: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.transport-card {
+  padding: 0;
+  border-left: 4px solid var(--sage);
+  padding-left: 2rem;
+}
+
+.transport-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--dark-brown);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.transport-card p {
+  color: var(--brown);
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+/* ============================
+   DRESS CODE
+   ============================ */
+.dress-code {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.dress-code-type {
+  font-size: 1.5rem;
+  color: var(--dark-brown);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.dress-code-desc {
+  color: var(--brown);
+  line-height: 1.9;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+.color-palette {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  padding: 2.5rem 2rem;
+  background: rgba(156, 175, 136, 0.1);
+  border-radius: 12px;
+}
+
+.color-sample {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  border: 3px solid var(--white);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.color-sample:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================
+   ALOJAMIENTO
+   ============================ */
+.accommodation {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.accommodation > p {
+  color: var(--brown);
+  margin-bottom: 2.5rem;
+  line-height: 1.9;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.hotel-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+}
+
+.hotel-list li {
+  padding: 0;
+  padding-left: 2rem;
+  border-left: 4px solid var(--rust);
+  transition: all 0.3s ease;
+}
+
+.hotel-list li:hover {
+  border-left-color: var(--olive);
+  padding-left: 2.5rem;
+}
+
+.hotel-list strong {
+  font-size: 1.3rem;
+  color: var(--dark-brown);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-serif);
+}
+
+.hotel-list span {
+  font-size: 1.05rem;
+  color: var(--brown);
+}
+
+/* ============================
+   FAQ
+   ============================ */
+.faq {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  padding: 0;
+  margin-bottom: 2.5rem;
+  padding-left: 2rem;
+  border-left: 4px solid var(--olive);
+}
+
+.faq-item h3 {
+  font-size: 1.4rem;
+  color: var(--dark-brown);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.faq-item p {
+  color: var(--brown);
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+/* ============================
+   RESPONSIVE - MÓVIL PRIMERO
+   ============================ */
+@media (max-width: 768px) {
+  .info-page {
+    padding-top: 0;
+  }
+
+  .info-page .section-header {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+  .info-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .info-page h1 {
+    font-size: 2rem;
+  }
+
+  .info-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-time {
+    font-size: 1.6rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .timeline-content p {
+    font-size: 1rem;
+  }
+
+  .location-name {
+    font-size: 1.8rem;
+  }
+
+  .location-address {
+    font-size: 1.05rem;
+  }
+
+  .map-container {
+    height: 350px;
+    border-radius: 8px;
+  }
+
+  .map-buttons {
+    flex-direction: column;
+  }
+
+  .map-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .transport-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .transport-card p {
+    font-size: 1rem;
+  }
+
+  .color-palette {
+    gap: 1.2rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .color-sample {
+    width: 55px;
+    height: 55px;
+  }
+
+  .hotel-list strong {
+    font-size: 1.15rem;
+  }
+
+  .hotel-list span {
+    font-size: 0.95rem;
+  }
+
+  .faq-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .faq-item p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .timeline-item,
+  .transport-card,
+  .hotel-list li,
+  .faq-item {
+    padding-left: 1.5rem;
+    border-left-width: 3px;
+  }
+
+  .map-container {
+    height: 300px;
+  }
+
+  .color-palette {
+    gap: 1rem;
+  }
+
+  .color-sample {
+    width: 50px;
+    height: 50px;
+  }
+}
