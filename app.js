@@ -24,10 +24,8 @@ function updateCountdown() {
   }
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
 
-  countdownElement.innerText = `${days} días · ${hours} horas · ${minutes} minutos`;
+  countdownElement.innerText = `${days} dies`;
 }
 
 // Iniciar cuenta regresiva si existe el elemento
