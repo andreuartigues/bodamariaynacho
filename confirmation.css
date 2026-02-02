@@ -30,7 +30,7 @@
   font-size: 1.1rem;
   color: var(--brown);
   line-height: 1.8;
-  max-width: 600px;
+  max-width: 700px;
   margin: 2rem auto 0;
 }
 
@@ -209,23 +209,26 @@
    ============================ */
 @media (max-width: 768px) {
   .confirmation-page {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1rem 3rem;
+    margin-top: 70px;
   }
 
   .container-wide {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 
   .form-card-wide {
     padding: 2rem 1.5rem;
+    border-radius: 8px;
   }
 
   .confirmation-header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .confirmation-intro {
     font-size: 1rem;
+    padding: 0 1rem;
   }
 
   .form-row {
@@ -233,8 +236,57 @@
     gap: 0;
   }
 
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
   .radio-options-horizontal {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .radio-option-clean {
+    padding: 1rem 1.2rem;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group textarea {
+    font-size: 16px; /* Evita zoom en iOS */
+  }
+}
+
+@media (max-width: 480px) {
+  .confirmation-page {
+    padding: 1.5rem 0.5rem 2rem;
+  }
+
+  .form-card-wide {
+    padding: 1.5rem 1rem;
+  }
+
+  .confirmation-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .confirmation-intro {
+    font-size: 0.95rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .radio-option-clean {
+    padding: 0.9rem 1rem;
+  }
+
+  .radio-text {
+    font-size: 0.95rem;
+  }
+
+  .btn-submit {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
   }
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Confirmació — Maria & Nacho</title>
+  <title>Confirmació – Maria & Nacho</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -37,20 +37,35 @@
       <div class="confirmation-header">
         <div class="section-header">
           <div class="decorative-line"></div>
-          <h1>Confirmació d'Asistència</h1>
+          <h1>Confirmació d'Assistència</h1>
           <div class="decorative-line"></div>
         </div>
         <p class="confirmation-intro">
-          Per favor, confirmau la vostra asistència abans del <strong>1 de Maig de 2026</strong>.
-          <br>Convé saber-ho tot per organitzar-lo amb estima.
+          Per favor, confirmau la vostra assistència abans del <strong>1 de Maig de 2026</strong>.
+          <br>
+          Convé saber-ho tot per organitzar-lo amb estima.
         </p>
       </div>
-
+      
+      Per favor, ompliu <strong>només una </strong>confirmació d'assitència per persona.
       <div class="form-card-wide">
         <form id="rsvp-form">
-          <div class="form-row">
             <div class="form-group">
-              <label for="name">Nom complet</label>
+            <label class="radio-label">Podràs assistir? *</label>
+            <div class="radio-options-horizontal">
+              <label class="radio-option-clean">
+                <input type="radio" name="asistencia" value="Si" required>
+                <span class="radio-text">Si, hi seré!</span>
+              </label>
+              <label class="radio-option-clean">
+                <input type="radio" name="asistencia" value="No" required>
+                <span class="radio-text">No podré assistir</span>
+              </label>
+            </div>
+          </div>
+        <div class="form-row">
+          <div class="form-group">
+              <label for="name">Nom complet *</label>
               <input 
                 type="text" 
                 id="name" 
@@ -72,30 +87,31 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="radio-label">Transport</label>
+          <!-- Campo de transporte - solo visible si asiste -->
+          <div class="form-group" id="transport-group">
+            <label class="radio-label">Transport *</label>
             <div class="radio-options-horizontal">
               <label class="radio-option-clean">
-                <input type="radio" name="bus" value="bus" required>
-                <span class="radio-text">Bus proporcionat</span>
+                <input type="radio" name="bus" value="bus">
+                <span class="radio-text">🚌 Bus proporcionat</span>
               </label>
               <label class="radio-option-clean">
-                <input type="radio" name="bus" value="coche" required>
-                <span class="radio-text">Cotxe propi</span>
+                <input type="radio" name="bus" value="coche">
+                <span class="radio-text">🚗 Cotxe propi</span>
               </label>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="comment">Comentaris o alèrgias (opcional)</label>
+            <label for="comment">Comentaris o al·lèrgias (opcional)</label>
             <textarea
               id="comment"
-              placeholder="Comenta-mos si tens qualque alèrgia alimentaria, restricció dietética o qualsevol altre cosa que hauirem de saber..."
+              placeholder="Comenta-mos si tens qualque al·lèrgia alimentaria, restricció dietètica o qualsevol altre cosa que hauirem de saber..."
               rows="4"
             ></textarea>
           </div>
 
-          <button type="submit" class="btn-submit">Confirmar Asistència</button>
+          <button type="submit" class="btn-submit">Confirmar Assistència</button>
         </form>
       </div>
     </div>
@@ -111,7 +127,45 @@
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
-  <script src="main.js"></script>
+  <script>
+    // Menú hamburguesa
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+        });
+      });
+    }
+
+    // Mostrar/ocultar campo de transporte según asistencia
+    const asistenciaRadios = document.querySelectorAll('input[name="asistencia"]');
+    const transportGroup = document.getElementById('transport-group');
+    const busRadios = document.querySelectorAll('input[name="bus"]');
+
+    asistenciaRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'Si') {
+          transportGroup.style.display = 'block';
+          busRadios.forEach(b => b.required = true);
+        } else {
+          transportGroup.style.display = 'none';
+          busRadios.forEach(b => {
+            b.required = false;
+            b.checked = false;
+          });
+        }
+      });
+    });
+
+    // Inicialmente ocultar el campo de transporte
+    transportGroup.style.display = 'none';
+  </script>
 </body>
 </html>

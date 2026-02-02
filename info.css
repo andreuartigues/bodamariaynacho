@@ -8,7 +8,7 @@
 
 .info-page .section-header {
   padding: 4rem 2rem 2rem;
-  background: var(--cream);
+  background: transparent;
 }
 
 .info-page h1 {
@@ -20,11 +20,12 @@
 }
 
 /* ============================
-   SECCIONES CON FRANJAS
+   SECCIONES CON FRANJAS A TODO ANCHO
    ============================ */
 .info-section {
-  padding: 4rem 2rem;
+  padding: 4rem 0;
   margin: 0;
+  width: 100%;
 }
 
 /* Alternar colores de fondo */
@@ -62,6 +63,7 @@
 .info-section .container {
   max-width: 900px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 /* ============================
@@ -154,6 +156,13 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 2.5rem;
+}
+
+.map-buttons img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .map-btn {
@@ -254,51 +263,76 @@
 }
 
 /* ============================
-   ALOJAMIENTO
+   ALOJAMIENTO - 4 HOTELES CON ESTRELLAS
    ============================ */
 .accommodation {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .accommodation > p {
   color: var(--brown);
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   line-height: 1.9;
   font-size: 1.1rem;
   text-align: center;
 }
 
-.hotel-list {
-  list-style: none;
-  padding: 0;
+.hotel-grid {
   display: grid;
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
 }
 
-.hotel-list li {
-  padding: 0;
-  padding-left: 2rem;
-  border-left: 4px solid var(--rust);
+.hotel-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 2px solid var(--beige);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.hotel-list li:hover {
-  border-left-color: var(--olive);
-  padding-left: 2.5rem;
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--sage);
 }
 
-.hotel-list strong {
-  font-size: 1.3rem;
-  color: var(--dark-brown);
-  display: block;
-  margin-bottom: 0.5rem;
+.hotel-name {
   font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--dark-brown);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
-.hotel-list span {
-  font-size: 1.05rem;
+.hotel-stars {
+  color: #ffd700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.hotel-desc {
   color: var(--brown);
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hotel-distance {
+  font-size: 0.95rem;
+  color: var(--olive);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.hotel-contact {
+  font-size: 0.9rem;
+  color: var(--brown);
+  font-family: 'Courier New', monospace;
 }
 
 /* ============================
@@ -342,7 +376,11 @@
   }
 
   .info-section {
-    padding: 3rem 1.5rem;
+    padding: 3rem 0;
+  }
+
+  .info-section .container {
+    padding: 0 1.5rem;
   }
 
   .info-page h1 {
@@ -406,12 +444,17 @@
     height: 55px;
   }
 
-  .hotel-list strong {
-    font-size: 1.15rem;
+  .hotel-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  .hotel-list span {
-    font-size: 0.95rem;
+  .hotel-card {
+    padding: 1.5rem;
+  }
+
+  .hotel-name {
+    font-size: 1.3rem;
   }
 
   .faq-item h3 {
@@ -428,9 +471,12 @@
     font-size: 1.6rem;
   }
 
+  .info-section .container {
+    padding: 0 1rem;
+  }
+
   .timeline-item,
   .transport-card,
-  .hotel-list li,
   .faq-item {
     padding-left: 1.5rem;
     border-left-width: 3px;
@@ -447,5 +493,17 @@
   .color-sample {
     width: 50px;
     height: 50px;
+  }
+
+  .hotel-card {
+    padding: 1.2rem;
+  }
+
+  .hotel-name {
+    font-size: 1.2rem;
+  }
+
+  .hotel-desc {
+    font-size: 0.95rem;
   }
 }

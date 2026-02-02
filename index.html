@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>María & Nacho — Sa Nostra Boda</title>
+  <title>María & Nacho – Sa Nostra Boda</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -42,17 +42,21 @@
     <div class="container">
       <div class="section-header">
         <div class="decorative-line"></div>
-        <h2>¡Ens Casam!</h2>
+        <h2>Ens Casam!</h2>
         <div class="decorative-line"></div>
       </div>
-      <p class="welcome-text">
-        Estimats amics i família, amb inmensa alegria volem compartir aquest dia tan especial amb vosaltres. Després de tants 
-        moment inolvidables junts, som molt feliços de celebrar sa nostra boda rodejats de ses persones que més estimam
-      </p>
-      <p class="welcome-text">
-        Sa vostra presència és es millor regal que podem tenir.
-        Esperam celebrar aquest dia tan únic amb vosaltes!
-      </p>
+      
+      <div class="welcome-box">
+        <p class="welcome-text">
+          Estimats amics i família, amb inmensa alegria volem compartir aquest dia tan especial amb vosaltres. Després de tants 
+          moment inolvidables junts, som molt feliços de celebrar sa nostra boda rodejats de ses persones que més estimam
+        </p>
+        <p class="welcome-text">
+          Sa vostra presència és es millor regal que podem tenir.
+          Esperam celebrar aquest dia tan únic amb vosaltes!
+        </p>
+      </div>
+
       <div class="date-badge">
         <span class="date-day">19</span>
         <span class="date-month">Setembre</span>
@@ -72,7 +76,7 @@
     <div class="container">
       <div class="section-header">
         <div class="decorative-line"></div>
-        <h2>Cronograma del Dia</h2>
+        <h2>Com ho celebrarem?</h2>
         <div class="decorative-line"></div>
       </div>
 
@@ -108,6 +112,9 @@
             <div class="event-time">13:00h</div>
             <h3>Arribada a Son Parera</h3>
             <p>Còctel de benvinguda i celebració</p>
+            <div class="event-image-placeholder">
+              <img src="sonparera.jfif" alt="SonParera" class="event-img">
+            </div>
           </div>
           <div class="event-dot"></div>
           <div class="event-spacer"></div>
@@ -130,9 +137,9 @@
   <!-- CONFIRMACIÓN -->
   <section id="confirmacion" class="confirmation-cta">
     <div class="container text-center">
-      <h3>Ens Confirmes sa teva Asistència?</h3>
+      <h3>Ens Confirmes sa teva Assistència?</h3>
       <p>Per favor, confirma abans del <strong>1 de Maig de 2026</strong></p>
-      <a href="confirmacion.html" class="btn-primary">Confirmar Asistència</a>
+      <a href="confirmacion.html" class="btn-primary">Confirmar Assistència</a>
     </div>
   </section>
 
@@ -146,7 +153,7 @@
       </div>
       <div class="gifts-content">
         <p class="gifts-text">
-          Es regalo és opcional, sa vostra asistència és lo més ens importa, però si voleu tenir un detall amb nosaltres,
+          Es regalo és opcional, sa vostra assistència és lo més ens importa, però si voleu tenir un detall amb nosaltres,
           hem preparat una "vidriola de viatge" on podeu ajudar-mos a fer es nostre Viatge de Noces més inolvidable.
         </p>
         <div class="bank-account">
@@ -189,5 +196,23 @@
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
+  <script>
+    // Menú hamburguesa
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+      });
+
+      // Cerrar menú al hacer click en un enlace
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+        });
+      });
+    }
+  </script>
 </body>
 </html>

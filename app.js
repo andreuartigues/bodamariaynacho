@@ -5,7 +5,7 @@ const supabaseClient = supabase.createClient(
 );
 
 // Configuración de la fecha de la boda
-const WEDDING_DATE = new Date("2026-09-19T12:00:00");
+const WEDDING_DATE = new Date("2026-09-19");
 
 /**
  * Actualiza la cuenta regresiva cada segundo
@@ -19,7 +19,7 @@ function updateCountdown() {
   if (!countdownElement) return;
   
   if (diff <= 0) {
-    countdownElement.innerText = "¡Avui és es gran dia! 💍";
+    countdownElement.innerText = "¡Avui és es gran dia! 💛";
     return;
   }
 
@@ -43,7 +43,10 @@ if (form) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Obtener el valor del radio button seleccionado
+    // Obtener el valor de asistencia
+    const asistenciaOption = document.querySelector('input[name="asistencia"]:checked');
+    
+    // Obtener el valor del bus solo si asiste
     const busOption = document.querySelector('input[name="bus"]:checked');
 
     // Obtener datos del formulario
@@ -51,13 +54,20 @@ if (form) {
       name: document.getElementById("name").value.trim(),
       email: document.getElementById("email").value.trim(),
       comment: document.getElementById("comment").value.trim() || null,
-      bus: busOption ? busOption.value : null,
-      created_at: new Date().toISOString()
+      bus: busOption ? busOption.value : "No",
+      created_at: new Date().toISOString(),
+      asistencia: asistenciaOption ? asistenciaOption.value : null
     };
 
     // Validación básica
-    if (!data.name || !data.email || !data.bus) {
-      alert("⚠️ Per favor, completa els camps obligatòris (nom, email y transport)");
+    if (!data.name || !data.email || !data.asistencia) {
+      alert("⚠️ Per favor, completa es camps obligatòris (nom, email i assistència)");
+      return;
+    }
+
+    // Si asiste, el transporte es obligatorio
+    if (data.asistencia === 'si' && !data.bus) {
+      alert("⚠️ Per favor, selecciona es mètode de transport");
       return;
     }
 
@@ -65,7 +75,7 @@ if (form) {
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     submitButton.disabled = true;
-    submitButton.textContent = "Enviando...";
+    submitButton.textContent = "Enviant...";
 
     try {
       const { error } = await supabaseClient
@@ -76,17 +86,28 @@ if (form) {
         throw error;
       }
 
-      alert("💛 Moltes gràcies per confirmar la teva asistència! Ens veim dia 19 de setembre.");
+      if (data.asistencia === 'si') {
+        alert("💛 Moltes gràcies per confirmar la teva assistència! Ens veim dia 19 de setembre.");
+      } else {
+        alert("💛 Gràcies per informar-nos. Esperem poder celebrar amb tu en una altra ocasió!");
+      }
+      
       form.reset();
+      
+      // Ocultar campo de transporte después de reset
+      const transportGroup = document.getElementById('transport-group');
+      if (transportGroup) {
+        transportGroup.style.display = 'none';
+      }
       
     } catch (error) {
       console.error("Error en enviar sa confirmació:", error);
       
       // Mensaje de error más específico
       if (error.message.includes("duplicate") || error.message.includes("unique")) {
-        alert("⚠️ Este email ya ha sido registrado. Si necesitas hacer cambios, contáctanos.");
+        alert("⚠️ Aquest email ja ha estat registrat. Si necessites fer canvis, contacta'ns.");
       } else {
-        alert("❌ Error al enviar la confirmación. Por favor intenta de nuevo o contáctanos.");
+        alert("❌ Error al enviar la confirmació. Per favor intenta de nou o contacta'ns.");
       }
       
     } finally {
