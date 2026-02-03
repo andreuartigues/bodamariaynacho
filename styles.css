@@ -173,7 +173,11 @@ body {
    ============================ */
 .welcome {
   padding: 3rem 2rem;
-  background: var(--white);
+background: #fcf0b8;
+background: radial-gradient(circle, rgba(252, 240, 184, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-header {
@@ -203,9 +207,7 @@ body {
   max-width: 750px;
   margin: 0 auto 2rem;
   padding: 2rem 2.5rem;
-  border: 3px solid var(--olive);
   border-radius: 20px;
-  background: var(--white);
   position: relative;
 }
 
@@ -398,7 +400,7 @@ body {
 }
 
 .bank-account {
-  padding: 2rem;
+  padding:0rem;
   margin: 2rem 0;
 }
 
@@ -412,10 +414,10 @@ body {
 
 .iban-number {
   font-family: 'Courier New', monospace;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: var(--dark-brown);
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .gifts-footer {

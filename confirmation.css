@@ -6,6 +6,8 @@
   padding: 4rem 2rem 5rem;
   min-height: calc(100vh - 200px);
   background: linear-gradient(180deg, var(--cream) 0%, var(--white) 50%, var(--beige) 100%);
+  background: #f2e6b1;
+background: radial-gradient(circle, rgba(252, 240, 184, 1) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 .container-wide {
