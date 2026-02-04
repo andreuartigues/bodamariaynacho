@@ -42,29 +42,14 @@
         </div>
         <p class="confirmation-intro">
           Per favor, confirmau la vostra assistència abans del <strong>1 de Maig de 2026</strong>.
-          <br>
-          Convé saber-ho tot per organitzar-lo amb estima.
+          <br>Convé saber-ho tot per organitzar-lo amb estima.
         </p>
       </div>
-      
-      Per favor, ompliu <strong>només una </strong>confirmació d'assitència per persona.
+
       <div class="form-card-wide">
         <form id="rsvp-form">
+          <div class="form-row">
             <div class="form-group">
-            <label class="radio-label">Podràs assistir? *</label>
-            <div class="radio-options-horizontal">
-              <label class="radio-option-clean">
-                <input type="radio" name="asistencia" value="Si" required>
-                <span class="radio-text">Si, hi seré!</span>
-              </label>
-              <label class="radio-option-clean">
-                <input type="radio" name="asistencia" value="No" required>
-                <span class="radio-text">No podré assistir</span>
-              </label>
-            </div>
-          </div>
-        <div class="form-row">
-          <div class="form-group">
               <label for="name">Nom complet *</label>
               <input 
                 type="text" 
@@ -84,6 +69,21 @@
                 required
                 autocomplete="email"
               >
+            </div>
+          </div>
+
+          <!-- NUEVO: Campo de asistencia -->
+          <div class="form-group">
+            <label class="radio-label">Podràs assistir? *</label>
+            <div class="radio-options-horizontal">
+              <label class="radio-option-clean">
+                <input type="radio" name="asistencia" value="si" required>
+                <span class="radio-text">✓ Sí, hi seré!</span>
+              </label>
+              <label class="radio-option-clean">
+                <input type="radio" name="asistencia" value="no" required>
+                <span class="radio-text">✗ No podré assistir</span>
+              </label>
             </div>
           </div>
 
@@ -151,7 +151,7 @@
 
     asistenciaRadios.forEach(radio => {
       radio.addEventListener('change', (e) => {
-        if (e.target.value === 'Si') {
+        if (e.target.value === 'si') {
           transportGroup.style.display = 'block';
           busRadios.forEach(b => b.required = true);
         } else {
