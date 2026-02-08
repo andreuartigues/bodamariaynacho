@@ -1,8 +1,9 @@
 // Supabase Edge Function: send-confirmation-email
 // Ubicación: supabase/functions/send-confirmation-email/index.ts
 
+//supabase functions deploy send-confirmation-email --no-verify-jwt
+
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
 
@@ -43,7 +44,7 @@ STATUS:CONFIRMED
 SUMMARY:Boda Maria & Nacho 💛
 TRANSP:OPAQUE
 ORGANIZER;CN=Maria & Nacho:mailto:noreply@sanostraboda.com
-ATTENDEE;CN=${name};RSVP=TRUE:mailto:${email}
+ATTENDEE;CN=${name};RSVP=FALSE:mailto:${email}
 BEGIN:VALARM
 TRIGGER:-P1D
 ACTION:DISPLAY
@@ -276,9 +277,6 @@ function getEmailTemplate(data: EmailData): string {
           Camí Vell de Muro, Km 3<br>
           07440 Muro, Mallorca
         </p>
-        <a href="https://maps.app.goo.gl/gEg1ADKL36m82Tnp8" class="map-button" target="_blank">
-          🗺️ Abrir en Google Maps
-        </a>
       </div>
       ` : `
       <p style="text-align: center; font-size: 16px; margin: 30px 0;">
@@ -314,22 +312,50 @@ serve(async (req) => {
   }
 
   try {
-    const emailData: EmailData = await req.json()
+    // Leer el body
+    const bodyText = await req.text()
+    console.log('📩 Body recibido (primeros 200 chars):', bodyText.substring(0, 200))
+    
+    // Intentar parsear
+    let emailData: EmailData
+    
+    try {
+      // Si viene como string doble-encoded, parsear dos veces
+      let parsedData = JSON.parse(bodyText)
+      
+      
+      // Si el resultado es un string, parsear de nuevo
+      if (typeof parsedData === 'string') {
+        parsedData = JSON.parse(parsedData)
+      }
+      
+      emailData = parsedData
+    } catch (parseError) {
+      console.error('❌ Error parseando JSON:', parseError)
+      throw new Error(`No se pudo parsear el JSON: ${parseError.message}`)
+    }
+
+    console.log('✅ Datos parseados:', JSON.stringify(emailData))
 
     // Validar datos
     if (!emailData.name || !emailData.email || !emailData.asistencia) {
-      throw new Error('Faltan datos requeridos')
+      throw new Error(`Faltan datos requeridos. Recibido: ${JSON.stringify(emailData)}`)
     }
+
+    console.log('✅ Datos validados correctamente')
+    console.log('📧 Preparando envío a:', emailData.email)
 
     // Generar archivo ICS
     const icsContent = generateICS(emailData.name, emailData.email)
-    const icsBase64 = btoa(icsContent)
+    const icsBase64 = btoa(
+  unescape(encodeURIComponent(icsContent))
+)
 
     // Preparar email con Resend
     const emailHtml = getEmailTemplate(emailData)
     
     const emailPayload = {
-      from: 'Maria & Nacho <boda@andreuartigues.github.io>', // Cambia por tu dominio verificado
+      from: 'asistencia@bodamariaynacho.com', // Cambia por tu dominio verificado
       to: [emailData.email],
       subject: emailData.asistencia === 'si' 
         ? '💛 Confirmació de la teva assistència - Boda Maria & Nacho'
@@ -343,6 +369,8 @@ serve(async (req) => {
       ] : []
     }
 
+    console.log('📤 Enviando a Resend...')
+
     // Enviar email con Resend
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -353,12 +381,15 @@ serve(async (req) => {
       body: JSON.stringify(emailPayload),
     })
 
+    const resendText = await resendResponse.text()
+    console.log('📨 Respuesta de Resend:', resendText)
+
     if (!resendResponse.ok) {
-      const error = await resendResponse.text()
-      throw new Error(`Error de Resend: ${error}`)
+      throw new Error(`Error de Resend (${resendResponse.status}): ${resendText}`)
     }
 
-    const result = await resendResponse.json()
+    const result = JSON.parse(resendText)
+    console.log('✅ Email enviado exitosamente. ID:', result.id)
 
     return new Response(
       JSON.stringify({ 
@@ -373,11 +404,14 @@ serve(async (req) => {
     )
 
   } catch (error) {
-    console.error('Error:', error)
+    console.error('❌ Error completo:', error)
+    console.error('❌ Stack:', error.stack)
+    
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: error.message 
+        error: error.message,
+        details: error.stack
       }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

@@ -64,25 +64,27 @@ function downloadICS(name, email) {
  */
 async function sendConfirmationEmail(name, email, asistencia, bus, comment) {
   try {
+    console.log('📧 Enviando email con datos:', { name, email, asistencia, bus, comment });
+    
     const { data, error } = await supabaseClient.functions.invoke('send-confirmation-email', {
-      body: {
+      body: JSON.stringify({
         name: name,
         email: email,
         asistencia: asistencia,
-        bus: bus,
-        comment: comment
-      }
+        bus: bus || null,
+        comment: comment || null
+      })
     });
 
     if (error) {
-      console.error('Error invocando Edge Function:', error);
+      console.error('❌ Error invocando Edge Function:', error);
       return false;
     }
 
-    console.log('Email enviat correctament:', data);
+    console.log('✅ Respuesta del servidor:', data);
     return true;
   } catch (error) {
-    console.error('Error enviando email:', error);
+    console.error('❌ Error enviando email:', error);
     return false;
   }
 }
