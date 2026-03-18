@@ -101,7 +101,7 @@ function updateCountdown() {
   if (!countdownElement) return;
   
   if (diff <= 0) {
-    countdownElement.innerText = "¡Avui és es gran dia! 💛";
+    countdownElement.innerText = "Avui és es gran dia! 💛";
     return;
   }
 
@@ -181,9 +181,9 @@ if (form) {
 
       // 4. Mostrar mensaje de éxito
       if (data.asistencia === 'si') {
-        alert("💛 Moltes gràcies per confirmar la teva assistència!\n\n✅ S'ha descarregat l'arxiu del calendari\n📧 Rebràs un email de confirmació en breus moments\n\nNos veim dia 19 de setembre!");
+        alert("💛 Moltes gràcies per confirmar la teva assistència! ✅\n\n 📧 Rebràs un email de confirmació en breus moments\n\nEns veim dia 19 de setembre!");
       } else {
-        alert("💛 Gràcies per informar-nos\n📧 Rebràs un email de confirmació\n\nEsperam poder celebrar amb tu en una altra ocasió!");
+        alert("💛 Gràcies per informar-nos\n\nEsperam poder celebrar amb tu en una altra ocasió!");
       }
       
       form.reset();
