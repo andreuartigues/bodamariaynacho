@@ -150,7 +150,7 @@ body {
 }
 
 .save-the-date-img {
-  width: clamp(180px, 40vw, 320px);
+  width: 80%;
   height: auto;
   margin: 0 auto;
   display: block;
@@ -162,8 +162,9 @@ body {
 }
 
 .foto_portada {
-  width: clamp(500px, 40vw, 520px);
+  width: clamp(400px, 40vw, 420px);
   height: auto;
+  margin: 0 auto;
   display: block;
 }
 
@@ -251,7 +252,7 @@ body {
 }
 
 .date-badge {
-  margin-top: 2rem;
+  margin-top: 2rem 2rem 0rem 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
