@@ -232,13 +232,13 @@ function getEmailTemplate(data: EmailData): string {
         <div class="schedule-item">
           <div class="schedule-time">12:00h</div>
           <div class="schedule-desc">
-            <strong>Ceremònia</strong><br>
+            <strong>Cerimònia</strong><br>
             Església de Sant Joan Baptista, Muro
           </div>
         </div>
 
         <div class="schedule-item">
-          <div class="schedule-time">13:00h</div>
+          <div class="schedule-time">13:30h</div>
           <div class="schedule-desc">
             <strong>Arribada a Son Parera</strong><br>
             Còctel de benvinguda
@@ -249,7 +249,7 @@ function getEmailTemplate(data: EmailData): string {
           <div class="schedule-time">15:00h</div>
           <div class="schedule-desc">
             <strong>Dinar</strong><br>
-            Menú seleccionat amb productes de sa terra
+            Menú seleccionat de plats locals
           </div>
         </div>
 
@@ -273,7 +273,7 @@ function getEmailTemplate(data: EmailData): string {
       <div class="location-box">
         <h3>📍 Ubicació</h3>
         <p style="margin: 10px 0;">
-          <strong>Finca "Son Parera"</strong><br>
+          <strong>Finca "Son Parera d'Abaix"</strong><br>
           Camí Vell de Muro, Km 3<br>
           07440 Muro, Mallorca
         </p>

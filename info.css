@@ -23,7 +23,7 @@
    SECCIONES CON FRANJAS A TODO ANCHO
    ============================ */
 .info-section {
-  padding: 4rem 0;
+  padding: 4rem 1rem;
   margin: 0;
   width: 100%;
 }
@@ -312,7 +312,7 @@
   margin-bottom: 3rem;
   line-height: 1.9;
   font-size: 1.1rem;
-  text-align: center;
+  text-align: justify;
 }
 
 .hotel-grid {
@@ -385,6 +385,7 @@
   margin-bottom: 2.5rem;
   padding-left: 2rem;
   border-left: 4px solid var(--olive);
+  text-align: justify;
 }
 
 .faq-item h3 {
@@ -413,11 +414,11 @@
   }
 
   .info-section {
-    padding: 3rem 0;
+    padding: 3rem 5rem;
   }
 
   .info-section .container {
-    padding: 0 1.5rem;
+    padding: 1rem 1.5rem;
   }
 
   .info-page h1 {
@@ -529,7 +530,7 @@
   }
 
   .info-section .container {
-    padding: 0 1rem;
+    padding: 1rem 1rem;
   }
 
   .timeline-item,
