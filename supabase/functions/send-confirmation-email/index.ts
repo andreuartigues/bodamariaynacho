@@ -254,15 +254,7 @@ function getEmailTemplate(data: EmailData): string {
         </div>
 
         <div class="schedule-item">
-          <div class="schedule-time">19:00h</div>
-          <div class="schedule-desc">
-            <strong>Festa!</strong><br>
-            Barra lliure i sorpreses
-          </div>
-        </div>
-
-        <div class="schedule-item">
-          <div class="schedule-time">00:00h</div>
+          <div class="schedule-time">23:00h</div>
           <div class="schedule-desc">
             <strong>Tornada a Palma</strong><br>
             Bus de tornada cap a Palma
@@ -289,10 +281,6 @@ function getEmailTemplate(data: EmailData): string {
         <div class="contact-item"><strong>Maria:</strong> 689 344 385</div>
         <div class="contact-item"><strong>Nacho:</strong> 678 540 369</div>
       </div>
-
-      <p style="text-align: center; margin-top: 30px; color: #8b7355;">
-        Ens veim aviat! 💛
-      </p>
     </div>
 
     <div class="footer">
