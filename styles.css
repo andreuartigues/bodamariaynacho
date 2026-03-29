@@ -387,7 +387,7 @@ body {
    REGALOS
    ============================ */
 .gifts {
-  padding: 5rem 2rem;
+  padding: 5rem 2rem 0rem 2rem;
   background: var(--white);
 }
 
@@ -398,12 +398,13 @@ body {
 }
 
 .gifts-text {
-  font-size: 1.1rem;
-  text-align: justify;
+    text-align: justify;
+  font-size: 1.4rem;
+  font-weight: 700;
   font-family: var(--font-serif);
-  color: var(--brown);
+  color: var(--dark-brown);
   line-height: 1.8;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .bank-account {
@@ -438,7 +439,7 @@ body {
    CONTACTO
    ============================ */
 .contact {
-  padding: 5rem 2rem;
+  padding: 3rem 2rem 1rem;
   background: var(--cream);
 }
 
@@ -461,7 +462,7 @@ body {
   width: 100px;
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--sage), transparent);
-  margin: 4rem 0;
+  margin: 4rem 1rem;
   border-radius: 1px;
 }
 
@@ -757,7 +758,7 @@ footer p {
   }
   .section-subheader h3 {
       font-size: 1.1rem;
-  color: var(--brown);
+  color: var(--dark-brown);
   line-height: 1.8;
   font-weight: normal;
   margin-bottom: 2rem;
