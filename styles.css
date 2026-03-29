@@ -184,8 +184,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 0rem;
 }
 
 .section-header h2 {
@@ -194,7 +194,6 @@ body {
   font-size: 2.5rem;
   color: var(--dark-brown);
   font-weight: 600;
-  margin-bottom: 1rem;
 }
 
 .section-subheader h3 {
@@ -236,10 +235,10 @@ body {
 
 .welcome-text {
   text-align: justify;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   font-family: var(--font-serif);
-  color: var(--brown);
+  color: var(--dark-brown);
   line-height: 1.8;
   margin-bottom: 1rem;
 }
@@ -806,10 +805,6 @@ footer p {
 @media (max-width: 480px) {
   .nav-brand {
     font-size: 0.9rem;
-  }
-
-  .section-header {
-    gap: 1rem;
   }
 
   .section-header h2 {
