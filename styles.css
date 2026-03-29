@@ -235,6 +235,7 @@ body {
 .welcome-text {
   text-align: justify;
   font-size: 1.1rem;
+  font-family: var(--font-serif);
   color: var(--brown);
   line-height: 1.8;
   margin-bottom: 1rem;
@@ -396,6 +397,8 @@ body {
 
 .gifts-text {
   font-size: 1.1rem;
+  text-align: justify;
+  font-family: var(--font-serif);
   color: var(--brown);
   line-height: 1.8;
   margin-bottom: 2.5rem;
@@ -761,6 +764,8 @@ footer p {
   .welcome-text {
     font-size: 1rem;
     text-align: left;
+    text-align: justify;
+
   }
 
   .date-day {
