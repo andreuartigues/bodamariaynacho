@@ -312,7 +312,7 @@
   margin-bottom: 3rem;
   line-height: 1.9;
   font-size: 1.1rem;
-  text-align: center;
+  text-align: justify;
 }
 
 .hotel-grid {
@@ -384,6 +384,7 @@
   padding: 0;
   margin-bottom: 2.5rem;
   padding-left: 2rem;
+  text-align: justify;
   border-left: 4px solid var(--olive);
 }
 
