@@ -634,6 +634,15 @@ footer p {
   .timeline-section {
     padding: 2rem 1rem;
   }
+  .section-header h2 {
+  font-family: var(--font-serif);
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1.9rem, 5vw, 2.1rem);
+  color: var(--dark-brown);
+  gap: 1rem;
+  font-weight: 600;
+}
 
   .event-timeline-serpentine {
     padding: 1rem 0;
