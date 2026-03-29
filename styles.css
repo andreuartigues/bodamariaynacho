@@ -185,7 +185,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .section-header h2 {
@@ -194,6 +194,7 @@ body {
   font-size: 2.5rem;
   color: var(--dark-brown);
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .section-subheader h3 {
@@ -236,8 +237,9 @@ body {
 .welcome-text {
   text-align: justify;
   font-size: 1.2rem;
+  font-weight: 700;
   font-family: var(--font-serif);
-  color: var(--dark-brown);
+  color: var(--brown);
   line-height: 1.8;
   margin-bottom: 1rem;
 }
