@@ -196,12 +196,7 @@ body {
   font-weight: 600;
 }
 
-.section-subheader h3 {
-  font-family: var(--font-serif);
-  font-size: 1.7rem;
-  color: var(--dark-brown);
-  font-weight: 600;
-}
+
 .decorative-line {
   width: 60px;
   height: 2px;
@@ -754,10 +749,10 @@ footer p {
   }
 
   .section-header h2 {
-    font-size: 1.8rem;
+    font-size: 2.1rem;
   }
   .section-subheader h3 {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
   color: var(--dark-brown);
   line-height: 1.8;
   font-weight: normal;
@@ -766,12 +761,6 @@ footer p {
   .section-subheader {
   margin-bottom: 1.5rem;
 }
-  .welcome-text {
-    font-size: 1.1rem;
-    text-align: left;
-    text-align: justify;
-
-  }
 
   .date-day {
     font-size: 2.5rem;
@@ -808,9 +797,6 @@ footer p {
     font-size: 0.9rem;
   }
 
-  .section-header h2 {
-    font-size: 1.5rem;
-  }
 
   .decorative-line {
     width: 40px;
