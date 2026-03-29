@@ -453,8 +453,7 @@ body {
   justify-content: center;
   gap: 0rem;
   flex-wrap: wrap;
-  max-width: 900px;
-  margin: 0 auto;
+  
 }
 
 .contact-divider {
@@ -467,8 +466,6 @@ body {
 
 .contact-item {
   text-align: center;
-  padding: 1.5rem;
-  min-width: 200px;
 }
 
 .contact-name {
