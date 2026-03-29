@@ -222,7 +222,7 @@ function getEmailTemplate(data: EmailData): string {
         <h3>🕐 Horari del Dia</h3>
         
         <div class="schedule-item">
-          <div class="schedule-time">11:30h</div>
+          <div class="schedule-time">10:30h</div>
           <div class="schedule-desc">
             <strong>Sortida Bus des de Palma</strong><br>
             Punt de trobada: Plaça Espanya

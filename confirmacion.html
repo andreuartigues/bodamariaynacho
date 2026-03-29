@@ -40,10 +40,6 @@
           <h1>Confirmació d'Assistència</h1>
           <div class="decorative-line"></div>
         </div>
-        <p class="confirmation-intro">
-          Per favor, confirmau la vostra assistència abans del <strong>1 de Maig de 2026</strong>.
-          <br>Convé saber-ho tot per organitzar-lo amb estima.
-        </p>
       </div>
 
       <div class="form-card-wide">
@@ -54,7 +50,7 @@
               <input 
                 type="text" 
                 id="name" 
-                placeholder="Introdueix el teu nom" 
+                placeholder="Posa es teu nom" 
                 required 
                 autocomplete="name"
               >
@@ -72,7 +68,7 @@
             </div>
           </div>
 
-          <!-- NUEVO: Campo de asistencia -->
+          <!-- Camp d'assistència -->
           <div class="form-group">
             <label class="radio-label">Podràs assistir? *</label>
             <div class="radio-options-horizontal">
@@ -87,26 +83,69 @@
             </div>
           </div>
 
-          <!-- Campo de transporte - solo visible si asiste -->
-          <div class="form-group" id="transport-group">
+          <!-- Camp de transport - visible si assisteix -->
+          <div class="form-group" id="transport-group" style="display:none;">
             <label class="radio-label">Transport *</label>
             <div class="radio-options-horizontal">
               <label class="radio-option-clean">
                 <input type="radio" name="bus" value="bus">
-                <span class="radio-text">🚌 Bus proporcionat</span>
+                <span class="radio-text">Bus proporcionat</span>
               </label>
               <label class="radio-option-clean">
                 <input type="radio" name="bus" value="coche">
-                <span class="radio-text">🚗 Cotxe propi</span>
+                <span class="radio-text">Cotxe propi</span>
               </label>
+            </div>
+
+            <!-- Sub-opcions bus - visible si tria bus -->
+            <div id="bus-trayecto-group" style="display:none;" class="bus-trayecto-box">
+              <label class="radio-label">Quin trajecte necessites? *</label>
+              <div class="radio-options-transport-sub">
+                <label class="radio-option-clean">
+                  <input type="radio" name="bus_trayecto" value="anada_tornada">
+                  <span class="radio-text">Anada i tornada</span>
+                </label>
+                <label class="radio-option-clean">
+                  <input type="radio" name="bus_trayecto" value="nomes_anada">
+                  <span class="radio-text">Només anada</span>
+                </label>
+                <label class="radio-option-clean">
+                  <input type="radio" name="bus_trayecto" value="nomes_tornada">
+                  <span class="radio-text">Només tornada</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Detalls cotxe - visible si tria cotxe -->
+            <div id="car-details-group" style="display:none;" class="car-details-box">
+              <label for="car_people">Quantes persones anau dins es cotxo? *</label>
+              <textarea
+                id="car_people"
+                placeholder="Amb qui vas dins es cotxo?"
+                rows="3"
+              ></textarea>
+              <p class="car-details-hint">Aquesta informació ens ajuda a organitzar es parking a sa finca.</p>
             </div>
           </div>
 
+          <!-- Suggeriments de cançons -->
+          <div class="form-group song-suggestion-group" id="song-group" style="display:none;">
+            <label for="song" class="song-label">
+              Suggereix una cançó per a la festa!
+            </label>
+            <p class="song-hint">Quina cançó no pot faltar per fer ballar tothom?</p>
+            <input 
+              type="text" 
+              id="song" 
+              placeholder="Títol i artista de la cançó..."
+            >
+          </div>
+
           <div class="form-group">
-            <label for="comment">Comentaris o al·lèrgias (opcional)</label>
+            <label for="comment">Comentaris o al·lèrgies (opcional)</label>
             <textarea
               id="comment"
-              placeholder="Comenta-mos si tens qualque al·lèrgia alimentaria, restricció dietètica o qualsevol altre cosa que hauirem de saber..."
+              placeholder="Comenta-mos si tens qualque al·lèrgia alimentària, restricció dietètica o qualsevol altre cosa que hauríem de saber..."
               rows="4"
             ></textarea>
           </div>
@@ -136,7 +175,6 @@
       hamburger.addEventListener('click', () => {
         navMenu.classList.toggle('active');
       });
-
       document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
           navMenu.classList.remove('active');
@@ -144,28 +182,57 @@
       });
     }
 
-    // Mostrar/ocultar campo de transporte según asistencia
+    // Elements
     const asistenciaRadios = document.querySelectorAll('input[name="asistencia"]');
-    const transportGroup = document.getElementById('transport-group');
-    const busRadios = document.querySelectorAll('input[name="bus"]');
+    const transportGroup   = document.getElementById('transport-group');
+    const songGroup        = document.getElementById('song-group');
+    const busRadios        = document.querySelectorAll('input[name="bus"]');
+    const busTrayectoGroup = document.getElementById('bus-trayecto-group');
+    const busTrayectoRadios= document.querySelectorAll('input[name="bus_trayecto"]');
+    const carDetailsGroup  = document.getElementById('car-details-group');
+    const carPeopleTextarea= document.getElementById('car_people');
 
+    function resetTransport() {
+      busTrayectoGroup.style.display = 'none';
+      carDetailsGroup.style.display  = 'none';
+      busTrayectoRadios.forEach(r => { r.required = false; r.checked = false; });
+      busRadios.forEach(b => { b.required = false; b.checked = false; });
+      carPeopleTextarea.required = false;
+      carPeopleTextarea.value   = '';
+    }
+
+    // Mostrar/ocultar transport i cançó segons assistència
     asistenciaRadios.forEach(radio => {
       radio.addEventListener('change', (e) => {
         if (e.target.value === 'si') {
           transportGroup.style.display = 'block';
+          songGroup.style.display      = 'block';
           busRadios.forEach(b => b.required = true);
         } else {
           transportGroup.style.display = 'none';
-          busRadios.forEach(b => {
-            b.required = false;
-            b.checked = false;
-          });
+          songGroup.style.display      = 'none';
+          resetTransport();
         }
       });
     });
 
-    // Inicialmente ocultar el campo de transporte
-    transportGroup.style.display = 'none';
+    // Mostrar sub-opcions bus o detalls cotxe
+    busRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'bus') {
+          busTrayectoGroup.style.display = 'block';
+          busTrayectoRadios.forEach(r => r.required = true);
+          carDetailsGroup.style.display  = 'none';
+          carPeopleTextarea.required = false;
+          carPeopleTextarea.value   = '';
+        } else if (e.target.value === 'coche') {
+          carDetailsGroup.style.display  = 'block';
+          carPeopleTextarea.required = true;
+          busTrayectoGroup.style.display = 'none';
+          busTrayectoRadios.forEach(r => { r.required = false; r.checked = false; });
+        }
+      });
+    });
   </script>
 </body>
 </html>
