@@ -450,19 +450,24 @@ body {
 .contact-info {
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 0rem;
   flex-wrap: wrap;
   max-width: 900px;
   margin: 0 auto;
 }
 
+.contact-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--sage), transparent);
+  margin: 4rem 0;
+  border-radius: 1px;
+}
+
 .contact-item {
   text-align: center;
   padding: 1.5rem;
-  background: var(--white);
-  border-radius: 8px;
   min-width: 200px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .contact-name {
@@ -762,7 +767,7 @@ footer p {
   margin-bottom: 1.5rem;
 }
   .welcome-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-align: left;
     text-align: justify;
 
