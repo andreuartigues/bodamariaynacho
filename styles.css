@@ -155,7 +155,11 @@ body {
   margin: 0 auto;
   display: block;
 }
-
+.safari {
+  width:100%;
+  height: auto;
+  display: block;
+}
 
 @keyframes fadeIn {
   from {
@@ -191,6 +195,12 @@ body {
   font-weight: 600;
 }
 
+.section-subheader h3 {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  color: var(--dark-brown);
+  font-weight: 600;
+}
 .decorative-line {
   width: 60px;
   height: 2px;
@@ -393,7 +403,7 @@ body {
 
 .bank-account {
   padding: 2rem;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 .iban-label {
@@ -408,15 +418,15 @@ body {
   font-family: 'Courier New', monospace;
   font-size: 1.3rem;
   color: var(--dark-brown);
-  font-weight: 600;
+  font-weight: 570;
   letter-spacing: 2px;
 }
 
 .gifts-footer {
   font-size: 1.1rem;
-  color: var(--olive);
+  color: var(--brown);
   font-style: italic;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 /* ============================
@@ -738,7 +748,16 @@ footer p {
   .section-header h2 {
     font-size: 1.8rem;
   }
-
+  .section-subheader h3 {
+      font-size: 1.1rem;
+  color: var(--brown);
+  line-height: 1.8;
+  font-weight: normal;
+  margin-bottom: 2rem;
+  }
+  .section-subheader {
+  margin-bottom: 1.5rem;
+}
   .welcome-text {
     font-size: 1rem;
     text-align: left;
