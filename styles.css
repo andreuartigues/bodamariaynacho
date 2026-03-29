@@ -190,6 +190,7 @@ body {
 
 .section-header h2 {
   font-family: var(--font-serif);
+  justify-content: center;
   font-size: 2.5rem;
   color: var(--dark-brown);
   font-weight: 600;
