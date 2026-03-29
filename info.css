@@ -52,11 +52,13 @@
   content: '';
   position: absolute;
   bottom: 0;
+  top: 1%;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 100px;
   height: 3px;
-  background: var(--sage);
+  background: linear-gradient(90deg, transparent, var(--sage), transparent);
+  margin: 4rem auto;
   border-radius: 2px;
 }
 
