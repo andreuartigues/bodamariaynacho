@@ -170,10 +170,16 @@ body {
   height: auto;
   margin: 0 auto;
   display: block;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 200px 15px 180px 15px/15px 180px 15px 200px;
+  box-shadow: 0 8px 25px rgba(93, 78, 55, 0.1);
+  border: 2px solid rgba(156, 175, 136, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(250, 248, 243, 0.1) 0%,
+    transparent 100%
+  );
+  padding: 2px;
 }
- 
 /* Save the Date - misma proporción que foto portada */
 .save-the-date-img {
   width: clamp(280px, 50%, 450px);

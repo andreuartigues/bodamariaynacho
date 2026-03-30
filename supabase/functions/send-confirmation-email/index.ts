@@ -214,7 +214,7 @@ function getEmailTemplate(data: EmailData): string {
 
       ${data.asistencia === 'si' ? `
       <div class="calendar-note">
-        <strong>📅 Afegeix l'esdeveniment al teu calendari</strong><br>
+        <strong>📅 Afegeix s'esdeveniment al teu calendari</strong><br>
         Trobaràs un arxiu .ics adjunt que pots obrir amb Google Calendar, Outlook o qualsevol app de calendari.
       </div>
 
