@@ -11,8 +11,8 @@ const WEDDING_DATE = new Date("2026-09-19T12:00:00");
  * Genera un archivo .ics para añadir el evento al calendario
  */
 function generateICS(name, email) {
-  const eventStart = "20260919T120000";
-  const eventEnd = "20260920T003000";
+  const eventStart = "20260919T120000"; // 19 Sept 2026, 12:00
+  const eventEnd = "20260920T003000";   // 20 Sept 2026, 00:30
   
   const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
@@ -81,10 +81,10 @@ async function sendConfirmationEmail(name, email, asistencia, bus, comment) {
       return false;
     }
 
-    console.log('✅ Resposta del servidor:', data);
+    console.log('✅ Respuesta del servidor:', data);
     return true;
   } catch (error) {
-    console.error('❌ Error enviant email:', error);
+    console.error('❌ Error enviando email:', error);
     return false;
   }
 }
@@ -101,11 +101,12 @@ function updateCountdown() {
   if (!countdownElement) return;
   
   if (diff <= 0) {
-    countdownElement.innerText = "Avui és es gran dia! 💛";
+    countdownElement.innerText = "¡Avui és es gran dia! 💛";
     return;
   }
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
   countdownElement.innerText = `${days} dies`;
 }
 
@@ -127,9 +128,8 @@ if (form) {
     // Obtener el valor de asistencia
     const asistenciaOption = document.querySelector('input[name="asistencia"]:checked');
     
-    // Obtener el valor del bus
+    // Obtener el valor del bus solo si asiste
     const busOption = document.querySelector('input[name="bus"]:checked');
-    const busTrayectoOption = document.querySelector('input[name="bus_trayecto"]:checked');
 
     // Obtener datos del formulario
     const data = {
@@ -138,48 +138,29 @@ if (form) {
       asistencia: asistenciaOption ? asistenciaOption.value : null,
       comment: document.getElementById("comment").value.trim() || null,
       bus: busOption ? busOption.value : null,
-      bus_trayecto: (busOption && busOption.value === 'bus')
-        ? (busTrayectoOption ? busTrayectoOption.value : null)
-        : null,
-      car_people: (busOption && busOption.value === 'coche')
-        ? (document.getElementById("car_people")?.value.trim() || null)
-        : null,
-      song: document.getElementById("song")?.value.trim() || null,
       created_at: new Date().toISOString()
     };
 
-    // Validació bàsica
+    // Validación básica
     if (!data.name || !data.email || !data.asistencia) {
-      alert("⚠️ Per favor, completa els camps obligatoris (nom, email i assistència)");
+      alert("⚠️ Per favor, completa els camps obligatòris (nom, email i assistència)");
       return;
     }
 
-    // Si assisteix, el transport és obligatori
+    // Si asiste, el transporte es obligatorio
     if (data.asistencia === 'si' && !data.bus) {
       alert("⚠️ Per favor, selecciona el teu mètode de transport");
       return;
     }
 
-    // Si va en bus, el trajecte és obligatori
-    if (data.bus === 'bus' && !data.bus_trayecto) {
-      alert("⚠️ Per favor, selecciona el trajecte del bus (anada, tornada o ambdós)");
-      return;
-    }
-
-    // Si agafa cotxe, les persones del cotxe són obligatòries
-    if (data.bus === 'coche' && !data.car_people) {
-      alert("⚠️ Per favor, indica quantes persones i qui anireu en el cotxe");
-      return;
-    }
-
-    // Deshabilitar botó mentre s'envia
+    // Deshabilitar botón mientras se envía
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     submitButton.disabled = true;
     submitButton.textContent = "Enviant...";
 
     try {
-      // 1. Guardar a la base de dades
+      // 1. Guardar en base de datos
       const { error } = await supabaseClient
         .from("rsvp")
         .insert([data]);
@@ -188,36 +169,34 @@ if (form) {
         throw error;
       }
 
-      // 2. Enviar email de confirmació (en segon pla)
+
+
+      // 3. Enviar email de confirmación (en segundo plano)
       sendConfirmationEmail(data.name, data.email, data.asistencia, data.bus, data.comment)
         .then(success => {
           if (success) {
             console.log('✅ Email de confirmació enviat');
           } else {
-            console.log("⚠️ No s'ha pogut enviar l'email, però la confirmació s'ha guardat");
+            console.log('⚠️ No s\'ha pogut enviar l\'email, però la confirmació s\'ha guardat');
           }
         });
 
-      // 3. Mostrar missatge d'èxit
+      // 4. Mostrar mensaje de éxito
       if (data.asistencia === 'si') {
-        alert("💛 Moltes gràcies per confirmar sa teva assistència! ✅\n\n📧 Rebràs un email de confirmació en breus moments\n\nEns veim dia 19 de setembre!");
+        alert("💛 Moltes gràcies per confirmar la teva assistència!\n\n✅ S'ha descarregat l'arxiu del calendari\n📧 Rebràs un email de confirmació en breus moments\n\nFins dia 19 de setembre!");
       } else {
-        alert("💛 Gràcies per informar-nos\n\nEsperam poder celebrar amb tu en una altra ocasió!");
+        alert("💛 Gràcies per informar-nos\n📧 Rebràs un email de confirmació\n\nEsperam poder celebrar amb tu en una altra ocasió!");
       }
       
-      form.reset();
-      
-      // Ocultar camps condicionals després del reset
-      const transportGroup = document.getElementById('transport-group');
-      if (transportGroup) transportGroup.style.display = 'none';
-      const busTrayectoGroup = document.getElementById('bus-trayecto-group');
-      if (busTrayectoGroup) busTrayectoGroup.style.display = 'none';
-      const carDetailsGroup = document.getElementById('car-details-group');
-      if (carDetailsGroup) carDetailsGroup.style.display = 'none';
+      // Redireccionar a página de info
+      setTimeout(() => {
+        window.location.href = 'info.html';
+      }, 500);
       
     } catch (error) {
       console.error("Error en enviar sa confirmació:", error);
       
+      // Mensaje de error más específico
       if (error.message.includes("duplicate") || error.message.includes("unique")) {
         alert("⚠️ Aquest email ja ha estat registrat. Si necessites fer canvis, contacta'ns.");
       } else {
@@ -225,6 +204,7 @@ if (form) {
       }
       
     } finally {
+      // Rehabilitar botón
       submitButton.disabled = false;
       submitButton.textContent = originalText;
     }
