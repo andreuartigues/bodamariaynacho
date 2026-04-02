@@ -266,8 +266,6 @@ function getEmailTemplate(data: EmailData): string {
         <h3>📍 Ubicació</h3>
         <p style="margin: 10px 0;">
           <strong>Finca "Son Parera d'Abaix"</strong><br>
-          Camí Vell de Muro, Km 3<br>
-          07440 Muro, Mallorca
         </p>
       </div>
       ` : `
