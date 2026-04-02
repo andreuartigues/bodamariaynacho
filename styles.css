@@ -419,8 +419,8 @@ body {
    REGALOS
    ============================ */
 .gifts {
-  padding: 5rem 2rem 0rem 2rem;
-  background: var(--white);
+  padding: 1rem 2rem 0rem 2rem;
+  color: var(--brown);
 }
 
 .gifts-content {
