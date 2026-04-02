@@ -38,7 +38,7 @@ UID:wedding-maria-nacho-${Date.now()}@sanostraboda.com
 CREATED:${now}Z
 DESCRIPTION:Celebració de sa boda de Maria i Nacho\\n\\nHorari:\\n12:00h - Cerimònia a l'Església de Muro\\n13:30h - Còctel a Son Parera\\n15:00h - Dinar\\n19:00h - Festa\\n\\nUbicació: Finca Son Parera d'Abaix\\, Muro\\, Mallorca
 LAST-MODIFIED:${now}Z
-LOCATION:Finca Son Parera\\, Camí Vell de Muro\\, Km 3\\, 07440 Muro\\, Mallorca
+LOCATION:Finca Son Parera D'Abaix\\, Muro\\, Mallorca
 SEQUENCE:0
 STATUS:CONFIRMED
 SUMMARY:Boda Maria & Nacho 💛
