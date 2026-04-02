@@ -43,7 +43,6 @@ SEQUENCE:0
 STATUS:CONFIRMED
 SUMMARY:Boda Maria & Nacho 💛
 TRANSP:OPAQUE
-ORGANIZER;CN=Maria & Nacho:mailto:noreply@sanostraboda.com
 ATTENDEE;CN=${name};RSVP=FALSE:mailto:${email}
 BEGIN:VALARM
 TRIGGER:-P1D
