@@ -340,7 +340,7 @@ serve(async (req) => {
     const emailHtml = getEmailTemplate(emailData)
     
     const emailPayload = {
-      from: 'asistencia@bodamariaynacho.com', // Cambia por tu dominio verificado
+      from: 'bodamariaynacho@bodamariaynacho.com', // Cambia por tu dominio verificado
       to: [emailData.email],
       subject: emailData.asistencia === 'si' 
         ? '💛 Confirmació de la teva assistència - Boda Maria & Nacho'
