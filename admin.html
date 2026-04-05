@@ -2,126 +2,669 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin — Invitados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Invitados Boda Maria & Nacho</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #faf8f3 0%, #e8dcc4 100%);
+      color: #5d4e37;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #6b7c59 0%, #9caf88 100%);
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 0.9rem;
+      opacity: 0.95;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #6b7c59;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #8b7355;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .controls {
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6b7c59 0%, #9caf88 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(107, 124, 89, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(2px);
+    }
+
+    .btn-secondary {
+      background: #e8dcc4;
+      color: #5d4e37;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 2px solid #e8dcc4;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color 0.3s;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: #9caf88;
+    }
+
+    .search-box::before {
+      content: '🔍';
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+    }
+
+    .filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 2px solid #e8dcc4;
+      background: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    .filter-chip.active {
+      background: #6b7c59;
+      color: white;
+      border-color: #6b7c59;
+    }
+
+    .guest-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .guest-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-left: 4px solid #9caf88;
+      transition: all 0.3s;
+    }
+
+    .guest-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+
+    .guest-card.no-asiste {
+      border-left-color: #c17c5c;
+      opacity: 0.8;
+    }
+
+    .guest-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    .guest-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #5d4e37;
+      flex: 1;
+    }
+
+    .guest-status {
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .status-si {
+      background: #9caf88;
+      color: white;
+    }
+
+    .status-no {
+      background: #c17c5c;
+      color: white;
+    }
+
+    .guest-details {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .detail-icon {
+      font-size: 1.1rem;
+      min-width: 1.5rem;
+      text-align: center;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: #8b7355;
+      min-width: 100px;
+    }
+
+    .detail-value {
+      color: #5d4e37;
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .comment-box {
+      background: #f5f8f3;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #5d4e37;
+      border-left: 3px solid #9caf88;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #8b7355;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #8b7355;
+    }
+
+    .spinner {
+      border: 3px solid #e8dcc4;
+      border-top: 3px solid #6b7c59;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .timestamp {
+      font-size: 0.8rem;
+      color: #8b7355;
+      margin-top: 0.75rem;
+      text-align: right;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .search-box {
+        order: -1;
+      }
+
+      .detail-label {
+        min-width: 80px;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .guest-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .guest-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Lista de invitados</h1>
-  <p id="status"></p>
+  <div class="header">
+    <h1>💛 Panel de Administración</h1>
+    <p>Boda Maria & Nacho · 19 Setembre 2026</p>
+  </div>
+
+  <div class="container">
+    <!-- Estadísticas -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number" id="stat-total">0</span>
+        <span class="stat-label">Total</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-si">0</span>
+        <span class="stat-label">Asisten</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-no">0</span>
+        <span class="stat-label">No asisten</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-bus">0</span>
+        <span class="stat-label">Bus</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="stat-coche">0</span>
+        <span class="stat-label">Coche</span>
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Buscar por nombre o email...">
+      </div>
+      <div class="filters">
+        <button class="filter-chip active" data-filter="todos">Tots</button>
+        <button class="filter-chip" data-filter="si">✓ Asisten</button>
+        <button class="filter-chip" data-filter="no">✗ No asisten</button>
+        <button class="filter-chip" data-filter="bus">🚌 Bus</button>
+        <button class="filter-chip" data-filter="coche">🚗 Coche</button>
+      </div>
+      <button class="btn btn-primary" id="download">
+        📥 Descargar Excel
+      </button>
+      <button class="btn btn-secondary" id="refresh">
+        🔄 Actualizar
+      </button>
+    </div>
+
+    <!-- Lista de invitados -->
+    <div id="status" class="loading">
+      <div class="spinner"></div>
+      <p>Cargando invitados...</p>
+    </div>
+    <div class="guest-list" id="guest-list"></div>
+  </div>
+
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <button id="download">Descargar Excel</button>
   <script>
     const SUPABASE_URL = "https://eurobrvauarexooknbpi.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_AuBKM60iM53tjH4ptBGENQ_7MVuBcum";
     const ADMIN_TOKEN = "SONPARERA";
 
-     // sacar token de la URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get("token");
+    // Verificar token
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
 
-  if(token !== ADMIN_TOKEN){
-    document.body.innerHTML = "<h2>Acceso denegado</h2>";
-    throw "Token inválido";
-  }
+    console.log("Token recibido:", token);
+    console.log("Token esperado:", ADMIN_TOKEN);
+    console.log("URL completa:", window.location.href);
 
-  // Solo si token correcto inicializamos Supabase
-  const supabaseAdmin = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-
-  document.getElementById("download").addEventListener("click", async () => {
-  const { data, error } = await supabaseAdmin
-    .from("rsvp")
-    .select("name,email,bus,comment,created_at");
-
-  if(error){
-    alert("Error al descargar: "+error.message);
-    return;
-  }
-
-  downloadExcel(data);
-});
-
-function downloadExcel(rows) {
-
-  if (!rows || rows.length === 0) {
-    alert("No hay invitados registrados todavía");
-    return;
-  }
-
-  // 1️⃣ Crear array de datos
-  const data = rows.map(r => ({
-    Nombre: r.name || "",
-    Email: r.email || "",
-    BusCoche: r.bus || "",
-    Comentario: r.comment || "",
-    Fecha: new Date(r.created_at).toLocaleString()
-  }));
-
-  // 2️⃣ Crear libro y hoja
-  const wb = XLSX.utils.book_new();
-  const ws = XLSX.utils.json_to_sheet(data, {
-    header: ["Nombre","Email","BusCoche","Comentario","Fecha"],
-    origin: "A1"
-  });
-
-  // 🔐 Seguridad: asegurarse que la hoja tiene referencia
-  if (!ws["!ref"]) {
-    alert("No se pudo generar el archivo Excel");
-    return;
-  }
-
-  // 3️⃣ Formato de header en negrita y wrap text
-  const range = XLSX.utils.decode_range(ws["!ref"]);
-
-  for (let C = range.s.c; C <= range.e.c; ++C) {
-    const cell = ws[XLSX.utils.encode_cell({ r: 0, c: C })];
-    if (cell) {
-      if (!cell.s) cell.s = {};
-      cell.s.font = { bold: true };
-      cell.s.alignment = { wrapText: true };
+    if (token !== ADMIN_TOKEN) {
+      document.body.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:2rem;background:#faf8f3;">
+          <div>
+            <h2 style="color:#c17c5c;font-size:2rem;margin-bottom:1rem;">🔒 Acceso Denegado</h2>
+            <p style="color:#8b7355;margin-bottom:1rem;">Token inválido o inexistente</p>
+            <p style="color:#5d4e37;font-size:0.9rem;background:white;padding:1rem;border-radius:8px;">
+              URL correcta:<br>
+              <code style="color:#6b7c59;font-weight:bold;">admin.html?token=SONPARERA</code>
+            </p>
+          </div>
+        </div>
+      `;
+      throw "Token inválido";
     }
-  }
 
-  // 4️⃣ Formato de todas las celdas con wrap text
-  for (let R = 1; R <= range.e.r; ++R) {
-    for (let C = range.s.c; C <= range.e.c; ++C) {
-      const cell = ws[XLSX.utils.encode_cell({ r: R, c: C })];
-      if (cell) {
-        if (!cell.s) cell.s = {};
-        cell.s.alignment = { wrapText: true };
+    // Inicializar Supabase
+    const supabaseAdmin = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let allGuests = [];
+    let filteredGuests = [];
+    let currentFilter = 'todos';
+
+    // Cargar datos
+    async function loadGuests() {
+      document.getElementById('status').style.display = 'block';
+      document.getElementById('guest-list').innerHTML = '';
+
+      const { data, error } = await supabaseAdmin
+        .from("rsvp")
+        .select("*")
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        document.getElementById('status').innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">❌</div>
+            <p>Error al cargar: ${error.message}</p>
+          </div>
+        `;
+        return;
       }
+
+      allGuests = data || [];
+      updateStats();
+      applyFilters();
+      document.getElementById('status').style.display = 'none';
     }
-  }
 
-  // 5️⃣ Ajustar ancho de columnas
-  ws["!cols"] = [
-    { wch: 22 },
-    { wch: 30 },
-    { wch: 15 },
-    { wch: 30 },
-    { wch: 22 }
-  ];
+    // Actualizar estadísticas
+    function updateStats() {
+      const total = allGuests.length;
+      const asisten = allGuests.filter(g => g.asistencia === 'si').length;
+      const noAsisten = allGuests.filter(g => g.asistencia === 'no').length;
+      const bus = allGuests.filter(g => g.bus === 'bus').length;
+      const coche = allGuests.filter(g => g.bus === 'coche').length;
 
-  // 6️⃣ Filtros automáticos
-  ws["!autofilter"] = { ref: ws["!ref"] };
-
-  // 7️⃣ Resaltar filas si BusCoche tiene valor
-  for (let R = 1; R <= range.e.r; ++R) {
-    const cell = ws[XLSX.utils.encode_cell({ r: R, c: 2 })];
-    if (cell && cell.v) {
-      if (!cell.s) cell.s = {};
-      cell.s.fill = { fgColor: { rgb: "FFFFE4E1" } };
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-si').textContent = asisten;
+      document.getElementById('stat-no').textContent = noAsisten;
+      document.getElementById('stat-bus').textContent = bus;
+      document.getElementById('stat-coche').textContent = coche;
     }
-  }
 
-  // 8️⃣ Añadir hoja y descargar
-  XLSX.utils.book_append_sheet(wb, ws, "Invitados");
-  XLSX.writeFile(wb, "Lista_de_invitados.xlsx");
-}
+    // Aplicar filtros
+    function applyFilters() {
+      const searchTerm = document.getElementById('search').value.toLowerCase();
+      
+      filteredGuests = allGuests.filter(guest => {
+        // Filtro de búsqueda
+        const matchesSearch = !searchTerm || 
+          guest.name?.toLowerCase().includes(searchTerm) ||
+          guest.email?.toLowerCase().includes(searchTerm);
 
+        // Filtro de categoría
+        let matchesFilter = true;
+        if (currentFilter === 'si') matchesFilter = guest.asistencia === 'si';
+        if (currentFilter === 'no') matchesFilter = guest.asistencia === 'no';
+        if (currentFilter === 'bus') matchesFilter = guest.bus === 'bus';
+        if (currentFilter === 'coche') matchesFilter = guest.bus === 'coche';
+
+        return matchesSearch && matchesFilter;
+      });
+
+      renderGuests();
+    }
+
+    // Renderizar lista
+    function renderGuests() {
+      const container = document.getElementById('guest-list');
+
+      if (filteredGuests.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state" style="grid-column: 1/-1;">
+            <div class="empty-state-icon">🔍</div>
+            <p>No se encontraron invitados con estos filtros</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filteredGuests.map(guest => {
+        const asiste = guest.asistencia === 'si';
+        const statusClass = asiste ? 'status-si' : 'status-no';
+        const statusText = asiste ? '✓ Asiste' : '✗ No asiste';
+        const cardClass = asiste ? '' : 'no-asiste';
+
+        return `
+          <div class="guest-card ${cardClass}">
+            <div class="guest-header">
+              <div class="guest-name">${guest.name || 'Sin nombre'}</div>
+              <div class="guest-status ${statusClass}">${statusText}</div>
+            </div>
+            
+            <div class="guest-details">
+              <div class="detail-row">
+                <span class="detail-icon">📧</span>
+                <span class="detail-value">${guest.email || 'Sin email'}</span>
+              </div>
+
+              ${guest.bus ? `
+                <div class="detail-row">
+                  <span class="detail-icon">${guest.bus === 'bus' ? '🚌' : '🚗'}</span>
+                  <span class="detail-label">Transport:</span>
+                  <span class="detail-value">${guest.bus === 'bus' ? 'Bus proporcionat' : 'Cotxe propi'}</span>
+                </div>
+              ` : ''}
+
+              ${guest.bus_trayecto ? `
+                <div class="detail-row">
+                  <span class="detail-icon">🔄</span>
+                  <span class="detail-label">Trajecte:</span>
+                  <span class="detail-value">${
+                    guest.bus_trayecto === 'ida' ? 'Només anada' :
+                    guest.bus_trayecto === 'vuelta' ? 'Només tornada' :
+                    guest.bus_trayecto === 'ida_vuelta' ? 'Anada i tornada' :
+                    guest.bus_trayecto
+                  }</span>
+                </div>
+              ` : ''}
+
+              ${guest.car_people ? `
+                <div class="detail-row">
+                  <span class="detail-icon">👥</span>
+                  <span class="detail-label">Persones cotxe:</span>
+                  <span class="detail-value">${guest.car_people}</span>
+                </div>
+              ` : ''}
+
+              ${guest.song ? `
+                <div class="detail-row">
+                  <span class="detail-icon">🎵</span>
+                  <span class="detail-label">Cançó:</span>
+                  <span class="detail-value">${guest.song}</span>
+                </div>
+              ` : ''}
+            </div>
+
+            ${guest.comment ? `
+              <div class="comment-box">
+                💬 ${guest.comment}
+              </div>
+            ` : ''}
+
+            <div class="timestamp">
+              📅 ${new Date(guest.created_at).toLocaleString('es-ES')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Descargar Excel
+    document.getElementById('download').addEventListener('click', () => {
+      if (allGuests.length === 0) {
+        alert("No hay invitados registrados todavía");
+        return;
+      }
+
+      const data = allGuests.map(r => ({
+        Nombre: r.name || "",
+        Email: r.email || "",
+        Asistencia: r.asistencia === 'si' ? 'SÍ' : 'NO',
+        Transport: r.bus || "",
+        Trajecte_Bus: r.bus_trayecto || "",
+        Persones_Cotxe: r.car_people || "",
+        Cançó: r.song || "",
+        Comentario: r.comment || "",
+        Fecha: new Date(r.created_at).toLocaleString('es-ES')
+      }));
+
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.json_to_sheet(data);
+
+      // Estilos
+      const range = XLSX.utils.decode_range(ws["!ref"]);
+      for (let C = range.s.c; C <= range.e.c; ++C) {
+        const cell = ws[XLSX.utils.encode_cell({ r: 0, c: C })];
+        if (cell) {
+          if (!cell.s) cell.s = {};
+          cell.s.font = { bold: true };
+          cell.s.alignment = { wrapText: true };
+        }
+      }
+
+      // Anchos de columna
+      ws["!cols"] = [
+        { wch: 25 }, // Nombre
+        { wch: 30 }, // Email
+        { wch: 12 }, // Asistencia
+        { wch: 15 }, // Transport
+        { wch: 15 }, // Trajecte
+        { wch: 25 }, // Persones cotxe
+        { wch: 30 }, // Cançó
+        { wch: 40 }, // Comentario
+        { wch: 20 }  // Fecha
+      ];
+
+      ws["!autofilter"] = { ref: ws["!ref"] };
+
+      XLSX.utils.book_append_sheet(wb, ws, "Invitados");
+      XLSX.writeFile(wb, `Invitados_Boda_${new Date().toISOString().split('T')[0]}.xlsx`);
+    });
+
+    // Event listeners
+    document.getElementById('search').addEventListener('input', applyFilters);
+    document.getElementById('refresh').addEventListener('click', loadGuests);
+
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        e.target.classList.add('active');
+        currentFilter = e.target.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    // Cargar al inicio
+    loadGuests();
   </script>
 
 </body>
