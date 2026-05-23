@@ -223,7 +223,7 @@ function getEmailTemplate(data: EmailData): string {
           <div class="schedule-time">10:30h</div>
           <div class="schedule-desc">
             <strong>Sortida Bus des de Palma</strong><br>
-            Punt de trobada: Plaça Espanya
+            Punt de trobada: Plaça del Mercat
           </div>
         </div>
 
